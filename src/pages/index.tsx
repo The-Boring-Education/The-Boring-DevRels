@@ -58,7 +58,7 @@ export default function CampusConnect({ seo }: CampusConnectProps) {
               <p className="mt-4 md:mt-6 text-base md:text-lg text-black/70 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Join The Boring Education&apos;s Campus Connect & DevRel Program — Build, Lead, and Learn.
               </p>
-              <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+              <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 items-center justify-center lg:justify-start">
                 <Link
                   href={LINKS.joinDevRelAdvocate}
                   target="_blank"
@@ -102,7 +102,7 @@ export default function CampusConnect({ seo }: CampusConnectProps) {
         <section id="about" className="px-4 md:px-8 py-16 md:py-20">
           <div className="mx-auto max-w-6xl">
             <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-black">
                 About the Program
               </h2>
               <p className="text-black/60 mt-2">We are hiring DevRels across colleges in India</p>
