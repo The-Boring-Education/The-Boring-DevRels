@@ -5,18 +5,437 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { LINKS, SITE } from "@/config/links";
 
-type CampusConnectProps = {
-  seo: {
-    title: string;
-    description: string;
-    url: string;
-    image: string;
-  };
+// Section Component (following webapp pattern)
+const Section = ({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) => (
+  <section id={id} className={`px-4 md:px-8 py-16 md:py-20 ${className}`}>
+    {children}
+  </section>
+);
+
+// FlexContainer Component (following webapp pattern)
+const FlexContainer = ({
+  children,
+  direction = "row",
+  itemCenter = false,
+  justifyCenter = true,
+  className = "",
+  wrap = true
+}: {
+  children: React.ReactNode;
+  direction?: "row" | "col";
+  itemCenter?: boolean;
+  justifyCenter?: boolean;
+  className?: string;
+  wrap?: boolean;
+}) => (
+  <div className={`flex ${direction === "col" ? "flex-col" : "flex-row"} ${itemCenter ? "items-center" : ""} ${justifyCenter ? "justify-center" : ""} ${wrap ? "flex-wrap" : ""} ${className}`}>
+    {children}
+  </div>
+);
+
+// Text Component (following webapp pattern)
+const Text = ({
+  level,
+  children,
+  className = "",
+  textCenter = false
+}: {
+  level: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p";
+  children: React.ReactNode;
+  className?: string;
+  textCenter?: boolean;
+}) => {
+  const Tag = level;
+  return (
+    <Tag className={`${className} ${textCenter ? "text-center" : ""}`}>
+      {children}
+    </Tag>
+  );
 };
 
-export default function CampusConnect({ seo }: CampusConnectProps) {
+// SectionHeaderContainer Component (following webapp pattern)
+const SectionHeaderContainer = ({
+  heading,
+  focusText,
+  headingLevel = 2
+}: {
+  heading: string;
+  focusText: string;
+  headingLevel?: 1 | 2 | 3 | 4 | 5 | 6;
+}) => (
+  <div className="text-center mb-16">
+    <Text level={`h${headingLevel}` as any} className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+      {heading}
+    </Text>
+    <Text level="p" className="text-xl text-gray-600 max-w-3xl mx-auto">
+      {focusText}
+    </Text>
+  </div>
+);
+
+// Hero Section Component
+const HeroSection = () => (
+  <Section className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute -top-24 -right-24 w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-blue-400/20 to-indigo-500/20 blur-3xl" />
+      <div className="absolute -bottom-24 -left-24 w-72 h-72 md:w-96 md:h-96 rounded-full bg-gradient-to-br from-purple-400/20 to-pink-500/20 blur-3xl" />
+    </div>
+
+    <div className="max-w-6xl mx-auto relative z-10">
+      <FlexContainer direction="col" itemCenter className="gap-12 lg:gap-16 lg:flex-row">
+        <div className="flex-1 text-center lg:text-left">
+          <Text level="h1" className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+            Be the Face of Open-Source Tech Education in 🇮🇳
+          </Text>
+          <Text level="p" className="mt-6 text-lg md:text-xl text-gray-700 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Join The Boring Education&apos;s Campus Connect & DevRel Program — Build, Lead, and Learn.
+          </Text>
+
+          <FlexContainer className="mt-8 gap-4 justify-center lg:justify-start" direction="col" wrap={false}>
+            <Link
+              href={LINKS.joinDevRelAdvocate}
+              target="_blank"
+              className="bg-[#ff5757] hover:bg-[#ff6b6b] text-white px-8 py-4 rounded-xl shadow-lg shadow-[#ff5757]/25 text-lg font-semibold w-full sm:w-auto transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
+            >
+              Apply Now
+            </Link>
+            <Link
+              href={LINKS.viewSessionDetails}
+              target="_blank"
+              className="text-gray-700 underline hover:text-gray-900 text-center transition-colors duration-300 text-lg"
+            >
+              View Program Details
+            </Link>
+          </FlexContainer>
+
+          <FlexContainer className="mt-8 gap-6 justify-center lg:justify-start" itemCenter>
+            <span className="flex items-center gap-2 text-gray-600 text-sm">
+              <span className="w-3 h-3 bg-green-500 rounded-full" />
+              Open across colleges in India
+            </span>
+            <span className="opacity-40 hidden sm:block">•</span>
+            <span className="flex items-center gap-2 text-gray-600 text-sm">
+              <span className="w-3 h-3 bg-yellow-500 rounded-full" />
+              Limited Seats
+            </span>
+          </FlexContainer>
+        </div>
+
+        <div className="flex-1 flex justify-center lg:justify-end">
+          <div className="rounded-2xl border border-gray-200 bg-white/80 backdrop-blur-xl p-6 shadow-2xl">
+            <Image
+              src={'https://ik.imagekit.io/tbe/webapp/hero-image.svg'}
+              alt="Campus tech vibes"
+              width={500}
+              height={500}
+              className="rounded-xl w-full h-auto"
+            />
+            <div className="absolute -bottom-3 -right-3 bg-[#ff5757] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+              🎯 Join Now
+            </div>
+          </div>
+        </div>
+      </FlexContainer>
+    </div>
+  </Section>
+);
+
+// About Section Component
+const AboutSection = () => (
+  <Section id="about" className="bg-white">
+    <div className="max-w-6xl mx-auto">
+      <SectionHeaderContainer
+        heading="About the Program"
+        focusText="We are hiring DevRels across colleges in India"
+      />
+
+      <div className="mb-12">
+        <Text level="p" className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto" textCenter>
+          As a Campus DevRel, you will build a tech and learning community on your campus,
+          host events and workshops, collaborate on hackathons, and learn directly from our mentors.
+          Become a leader who drives innovation and community building at your college.
+        </Text>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {[
+          {
+            title: "Build Community",
+            desc: "Lead a tech-first community at your campus",
+            icon: "👥",
+          },
+          {
+            title: "Host Events",
+            desc: "Workshops, meetups, hackathons",
+            icon: "🎪",
+          },
+          {
+            title: "Learn from Mentors",
+            desc: "Industry guidance and feedback",
+            icon: "🎓",
+          },
+          {
+            title: "Grow Your Brand",
+            desc: "Certificates, badges, and visibility",
+            icon: "⭐",
+          },
+        ].map((item) => (
+          <div key={item.title} className="flex flex-col items-center text-center p-6 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <div className="text-4xl mb-4">{item.icon}</div>
+            <Text level="h3" className="text-xl font-semibold text-gray-900 mb-3">{item.title}</Text>
+            <Text level="p" className="text-gray-600 leading-relaxed">{item.desc}</Text>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+);
+
+// Hiring Process Section Component
+const HiringProcessSection = () => (
+  <Section id="process" className="bg-gray-50">
+    <div className="max-w-6xl mx-auto">
+      <SectionHeaderContainer
+        heading="Hiring Process"
+        focusText="A simple and fast selection process"
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          {
+            step: "01",
+            title: "Apply Online",
+            desc: "Submit your application form with portfolio",
+            icon: "📝",
+          },
+          {
+            step: "02",
+            title: "Short Interview",
+            desc: "Quick conversation with our team",
+            icon: "🎯",
+          },
+          {
+            step: "03",
+            title: "Onboarding & Training",
+            desc: "Kickstart with resources and guidance",
+            icon: "🚀",
+          },
+          {
+            step: "04",
+            title: "Start Building",
+            desc: "Lead your campus community",
+            icon: "🏗️",
+          },
+        ].map((s, idx) => (
+          <div key={s.step} className="relative flex flex-col items-center text-center">
+            {/* Arrow connector */}
+            {idx < 3 && (
+              <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-indigo-500 to-pink-500 transform -translate-y-1/2 z-0" />
+            )}
+
+            <div className="relative z-10">
+              <div className="w-20 h-20 rounded-full bg-white border-4 border-indigo-500 flex items-center justify-center font-bold text-indigo-600 shadow-lg text-xl mb-6">
+                {s.step}
+              </div>
+
+              <div className="text-3xl mb-4">{s.icon}</div>
+              <Text level="h3" className="text-xl font-bold text-gray-900 mb-3">
+                {s.title}
+              </Text>
+              <Text level="p" className="text-gray-600 leading-relaxed">
+                {s.desc}
+              </Text>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Mobile arrow indicators */}
+      <div className="lg:hidden mt-8 flex justify-center">
+        <div className="flex items-center gap-2 text-gray-400">
+          <span>↓</span>
+          <span>↓</span>
+          <span>↓</span>
+        </div>
+      </div>
+    </div>
+  </Section>
+);
+
+// Learning Journey Section Component
+const LearningJourneySection = () => (
+  <Section className="bg-white">
+    <div className="max-w-6xl mx-auto">
+      <SectionHeaderContainer
+        heading="Learning Journey"
+        focusText="Grow from fundamentals to leadership"
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        {[
+          {
+            title: "DevRel Fundamentals",
+            icon: "🎯",
+            color: "from-blue-500 to-indigo-600",
+          },
+          {
+            title: "Event Planning & Community Building",
+            icon: "🏗️",
+            color: "from-indigo-500 to-purple-600",
+          },
+          {
+            title: "Hands-on Projects with TBE",
+            icon: "⚡",
+            color: "from-purple-500 to-pink-600",
+          },
+          {
+            title: "Networking & Leadership Growth",
+            icon: "🌟",
+            color: "from-pink-500 to-red-600",
+          },
+          {
+            title: "Graduation & Certification",
+            icon: "🎓",
+            color: "from-red-500 to-orange-600",
+          },
+        ].map((item, idx) => (
+          <div key={item.title} className="flex flex-col items-center text-center p-6 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-2xl text-white mb-4`}>
+              {item.icon}
+            </div>
+            <div className="text-sm text-gray-500 mb-3 font-medium">Stage {idx + 1}</div>
+            <Text level="h4" className="text-sm font-semibold text-gray-900 leading-tight mb-4">
+              {item.title}
+            </Text>
+            <div className="w-full h-2 rounded-full bg-gray-100 overflow-hidden">
+              <div
+                className={`h-2 rounded-full bg-gradient-to-r ${item.color} transition-all duration-1000 ease-out`}
+                style={{ width: `${(idx + 1) * 20}%` }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+);
+
+// Perks Section Component
+const PerksSection = () => (
+  <Section id="perks" className="bg-gray-50">
+    <div className="max-w-6xl mx-auto">
+      <SectionHeaderContainer
+        heading="Perks & Rewards"
+        focusText="Grow faster with exclusive benefits"
+      />
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          {
+            perk: "Free mentorship from industry experts",
+            icon: "👨‍🏫",
+            color: "from-blue-500 to-indigo-600",
+          },
+          {
+            perk: "TBE Swag & Merchandise",
+            icon: "🎁",
+            color: "from-indigo-500 to-purple-600",
+          },
+          {
+            perk: "Certificates & LinkedIn Badges",
+            icon: "🏆",
+            color: "from-purple-500 to-pink-600",
+          },
+          {
+            perk: "Priority Access to TBE Internships",
+            icon: "💼",
+            color: "from-pink-500 to-red-600",
+          },
+          {
+            perk: "Event hosting budget",
+            icon: "💰",
+            color: "from-red-500 to-orange-600",
+          },
+          {
+            perk: "Networking with top founders & engineers",
+            icon: "🤝",
+            color: "from-orange-500 to-yellow-600",
+          },
+        ].map((item) => (
+          <div key={item.perk} className="flex items-start gap-4 p-6 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
+            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center text-xl text-white flex-shrink-0`}>
+              {item.icon}
+            </div>
+            <div className="flex-1">
+              <Text level="p" className="text-gray-900 text-lg leading-relaxed font-medium">
+                {item.perk}
+              </Text>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Section>
+);
+
+// Call to Action Section Component
+const CallToActionSection = () => (
+  <Section className="bg-gradient-to-br from-[#ff5757] to-[#ff6b6b] relative overflow-hidden">
+    <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+    </div>
+
+    <div className="max-w-6xl mx-auto relative z-10 text-center">
+      <Text level="h2" className="text-3xl md:text-4xl font-bold text-white mb-8">
+        Ready to Lead Your Campus Tech Community? 🚀
+      </Text>
+      <Text level="p" className="text-xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed">
+        Join hundreds of students who are already building the future of tech education.
+        Don&apos;t miss this opportunity to grow, learn, and make a difference.
+      </Text>
+
+      <FlexContainer className="mb-10 gap-6 justify-center" direction="col" wrap={false}>
+        <Link
+          href={LINKS.joinDevRelAdvocate}
+          target="_blank"
+          className="bg-white text-[#ff5757] hover:bg-gray-100 px-10 py-5 rounded-2xl shadow-xl text-xl font-semibold w-full sm:w-auto transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
+        >
+          Apply Now - Limited Time!
+        </Link>
+        <Link
+          href={LINKS.viewSessionDetails}
+          target="_blank"
+          className="text-white underline hover:text-gray-200 transition-colors duration-300 text-xl"
+        >
+          Learn More About the Program
+        </Link>
+      </FlexContainer>
+
+      <FlexContainer className="gap-6 justify-center" itemCenter wrap>
+        <span className="flex items-center gap-2 text-white/90 text-sm">
+          <span className="w-3 h-3 bg-green-400 rounded-full" />
+          Applications Open
+        </span>
+        <span className="opacity-40">•</span>
+        <span className="flex items-center gap-2 text-white/90 text-sm">
+          <span className="w-3 h-3 bg-yellow-400 rounded-full" />
+          Rolling Admissions
+        </span>
+        <span className="opacity-40">•</span>
+        <span className="flex items-center gap-2 text-white/90 text-sm">
+          <span className="w-3 h-3 bg-blue-400 rounded-full" />
+          Start Anytime
+        </span>
+      </FlexContainer>
+    </div>
+  </Section>
+);
+
+// Main Component
+const CampusConnect = ({ seo }: { seo: { title: string; description: string; url: string; image: string } }) => {
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-gray-50">
+    <div className="min-h-screen flex flex-col bg-white">
       <Head>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
@@ -48,291 +467,20 @@ export default function CampusConnect({ seo }: CampusConnectProps) {
       <Header />
 
       <main className="flex-1">
-        {/* Hero */}
-        <section className="relative overflow-hidden px-4 md:px-8 py-12 md:py-20 bg-[radial-gradient(80%_80%_at_100%_0%,#ff575722_0%,transparent_60%),radial-gradient(80%_80%_at_0%_100%,#a78bfa22_0%,transparent_60%)]">
-          <div className="mx-auto max-w-6xl relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="text-center lg:text-left">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-black leading-tight">
-                Be the Face of Tech in Your College 🚀
-              </h1>
-              <p className="mt-4 md:mt-6 text-base md:text-lg text-black/70 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Join The Boring Education&apos;s Campus Connect & DevRel Program — Build, Lead, and Learn.
-              </p>
-              <div className="mt-6 md:mt-8 flex flex-col sm:flex-row gap-3 items-center justify-center lg:justify-start">
-                <Link
-                  href={LINKS.joinDevRelAdvocate}
-                  target="_blank"
-                  className="bg-[#ff5757] hover:bg-[#ff6b6b] text-white px-6 py-3 rounded-xl shadow-lg shadow-[#ff5757]/25 text-base font-semibold w-full sm:w-auto transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
-                >
-                  Apply Now
-                </Link>
-                <Link
-                  href={LINKS.viewSessionDetails}
-                  target="_blank"
-                  className="button-text underline text-black hover:text-black/60 text-center transition-colors duration-300"
-                >
-                  View Program Details
-                </Link>
-              </div>
-              <div className="mt-6 flex items-center justify-center lg:justify-start gap-4 text-black/60 text-sm">
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-500 rounded-full" />
-                  Open across colleges in India
-                </span>
-                <span className="opacity-40 hidden sm:block">•</span>
-                <span className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-yellow-500 rounded-full" />
-                  Limited Seats
-                </span>
-              </div>
-            </div>
-
-            <div className="relative order-first lg:order-last">
-              <div className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur-xl p-4 md:p-6 shadow-xl">
-                <Image src="/globe.svg" alt="Campus tech vibes" width={800} height={450} className="rounded-xl w-full h-auto" />
-                <div className="absolute -bottom-3 -right-3 bg-[#ff5757] text-white px-3 py-1.5 rounded-full text-xs font-semibold shadow-lg">
-                  🎯 Join Now
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* About */}
-        <section id="about" className="px-4 md:px-8 py-16 md:py-20">
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-black">
-                About the Program
-              </h2>
-              <p className="text-black/60 mt-2">We are hiring DevRels across colleges in India</p>
-            </div>
-            <p className="text-black/70 text-base leading-relaxed max-w-3xl">
-              As a Campus DevRel, you will build a tech and learning community on your campus, host events and workshops, collaborate on hackathons, and learn directly from our mentors. Become a leader who drives innovation and community building at your college.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-6 mt-8">
-              {[{
-                title: "Build Community",
-                desc: "Lead a tech-first community at your campus",
-                icon: "👥",
-              }, {
-                title: "Host Events",
-                desc: "Workshops, meetups, hackathons",
-                icon: "🎪",
-              }, {
-                title: "Learn from Mentors",
-                desc: "Industry guidance and feedback",
-                icon: "🎓",
-              }, {
-                title: "Grow Your Brand",
-                desc: "Certificates, badges, and visibility",
-                icon: "⭐",
-              }].map((item) => (
-                <div key={item.title} className="rounded-xl border border-black/10 p-4 lg:p-5 bg-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <div className="text-2xl mb-3">{item.icon}</div>
-                  <h3 className="text-lg font-semibold">{item.title}</h3>
-                  <p className="text-sm text-black/60 leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Process */}
-        <section id="process" className="px-4 md:px-8 py-16 md:py-20 bg-gradient-to-b from-white to-gray-50">
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Hiring Process</h2>
-              <p className="text-black/60 mt-2">A simple and fast selection process</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
-              {[{
-                step: "01",
-                title: "Apply Online",
-                desc: "Submit your application form with portfolio",
-                icon: "📝",
-              }, {
-                step: "02",
-                title: "Short Interview",
-                desc: "Quick conversation with our team",
-                icon: "🎯",
-              }, {
-                step: "03",
-                title: "Onboarding & Training",
-                desc: "Kickstart with resources and guidance",
-                icon: "🚀",
-              }, {
-                step: "04",
-                title: "Start Building",
-                desc: "Lead your campus community",
-                icon: "🏗️",
-              }].map((s, idx) => (
-                <div key={s.step} className="relative text-center">
-                  {idx < 3 && (
-                    <div className="hidden md:block absolute top-6 left-full w-full h-0.5 bg-gradient-to-r from-indigo-500 to-pink-500 -translate-y-1/2" />
-                  )}
-                  <div className="relative z-10">
-                    <div className="w-16 h-16 rounded-full bg-white border-4 border-indigo-500 flex items-center justify-center font-bold text-indigo-600 shadow-lg text-lg mx-auto mb-4">
-                      {s.step}
-                    </div>
-                    <div className="text-xl mb-3">{s.icon}</div>
-                    <h3 className="text-base font-bold mb-2">{s.title}</h3>
-                    <p className="text-sm text-black/60 leading-relaxed">{s.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Learning Journey */}
-        <section className="px-4 md:px-8 py-16 md:py-20">
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Learning Journey</h2>
-              <p className="text-black/60 mt-2">Grow from fundamentals to leadership</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 lg:gap-3 mt-8">
-              {[{
-                title: "DevRel Fundamentals",
-                icon: "🎯",
-                color: "from-blue-500 to-indigo-600",
-              }, {
-                title: "Event Planning & Community Building",
-                icon: "🏗️",
-                color: "from-indigo-500 to-purple-600",
-              }, {
-                title: "Hands-on Projects with TBE",
-                icon: "⚡",
-                color: "from-purple-500 to-pink-600",
-              }, {
-                title: "Networking & Leadership Growth",
-                icon: "🌟",
-                color: "from-pink-500 to-red-600",
-              }, {
-                title: "Graduation & Certification",
-                icon: "🎓",
-                color: "from-red-500 to-orange-600",
-              }].map((item, idx) => (
-                <div key={item.title} className="rounded-xl border border-black/10 bg-white p-3 lg:p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group min-w-0">
-                  <div className="text-center">
-                    <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-lg lg:text-xl text-white mb-3 mx-auto`}>
-                      {item.icon}
-                    </div>
-                    <div className="text-xs text-black/60 mb-2 font-medium">Stage {idx + 1}</div>
-                    <h4 className="text-sm font-semibold">{item.title}</h4>
-                    <div className="mt-2 h-1.5 rounded-full bg-gray-100 overflow-hidden">
-                      <div className={`h-1.5 rounded-full bg-gradient-to-r ${item.color}`} style={{ width: `${(idx + 1) * 20}%` }} />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Perks */}
-        <section id="perks" className="px-4 md:px-8 py-16 md:py-20 bg-gradient-to-b from-gray-50 to-white">
-          <div className="mx-auto max-w-6xl">
-            <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">Perks & Rewards</h2>
-              <p className="text-black/60 mt-2">Grow faster with exclusive benefits</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-              {[{
-                perk: "Free mentorship from industry experts",
-                icon: "👨‍🏫",
-                color: "from-blue-500 to-indigo-600",
-              }, {
-                perk: "TBE Swag & Merchandise",
-                icon: "🎁",
-                color: "from-indigo-500 to-purple-600",
-              }, {
-                perk: "Certificates & LinkedIn Badges",
-                icon: "🏆",
-                color: "from-purple-500 to-pink-600",
-              }, {
-                perk: "Priority Access to TBE Internships",
-                icon: "💼",
-                color: "from-pink-500 to-red-600",
-              }, {
-                perk: "Event hosting budget",
-                icon: "💰",
-                color: "from-red-500 to-orange-600",
-              }, {
-                perk: "Networking with top founders & engineers",
-                icon: "🤝",
-                color: "from-orange-500 to-yellow-600",
-              }].map((item) => (
-                <div key={item.perk} className="rounded-xl border border-black/10 bg-white p-4 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
-                  <div className="flex items-start gap-3">
-                    <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${item.color} flex items-center justify-center text-lg text-white flex-shrink-0`}>
-                      {item.icon}
-                    </div>
-                    <div className="flex-1">
-                      <p className="text-black text-base leading-relaxed font-medium">{item.perk}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className="px-4 md:px-8 py-20 md:py-28 bg-gradient-to-br from-[#ff5757] to-[#ff6b6b] relative overflow-hidden">
-          <div className="absolute inset-0">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-          </div>
-          <div className="mx-auto max-w-6xl relative z-10 text-center">
-            <h2 className="text-white text-2xl md:text-3xl font-extrabold tracking-tight mb-6">
-              Ready to Lead Your Campus Tech Community? 🚀
-            </h2>
-            <p className="text-white/90 text-lg md:text-xl mb-8 max-w-3xl mx-auto leading-relaxed">
-              Join hundreds of students who are already building the future of tech education. Don&apos;t miss this opportunity to grow, learn, and make a difference.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link
-                href={LINKS.joinDevRelAdvocate}
-                target="_blank"
-                className="bg-white text-[#ff5757] hover:bg-gray-100 px-8 py-4 rounded-2xl shadow-xl text-lg font-semibold w-full sm:w-auto transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
-              >
-                Apply Now - Limited Time!
-              </Link>
-              <Link
-                href={LINKS.viewSessionDetails}
-                target="_blank"
-                className="text-white underline hover:text-gray-200 transition-colors duration-300 text-lg"
-              >
-                Learn More About the Program
-              </Link>
-            </div>
-            <div className="mt-8 flex items-center justify-center gap-6 text-white/80 text-sm">
-              <span className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-green-400 rounded-full" />
-                Applications Open
-              </span>
-              <span className="opacity-40">•</span>
-              <span className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-yellow-400 rounded-full" />
-                Rolling Admissions
-              </span>
-              <span className="opacity-40">•</span>
-              <span className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-blue-400 rounded-full" />
-                Start Anytime
-              </span>
-            </div>
-          </div>
-        </section>
+        <HeroSection />
+        <AboutSection />
+        <HiringProcessSection />
+        <LearningJourneySection />
+        <PerksSection />
+        <CallToActionSection />
       </main>
 
       <Footer />
     </div>
   );
-}
+};
+
+export default CampusConnect;
 
 export async function getStaticProps() {
   const title = "Campus Connect – The Boring DevRels";
@@ -346,5 +494,4 @@ export async function getStaticProps() {
       seo: { title, description, url, image },
     },
   };
-}
-
+} 
