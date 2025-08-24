@@ -3,15 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev -p 3000",
     "build": "next build --turbopack",
-    "start": "next start",
+    "start": "next start -p 3000",
     "lint": "eslint"
   },
   "dependencies": {
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.0"
+    "next": "15.5.0",
+    "axios": "^1.6.0",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.0.18",
+    "framer-motion": "^12.4.0",
+    "react-hook-form": "^7.45.0",
+    "zod": "^3.23.0",
+    "@hookform/resolvers": "^3.3.0",
+    "lucide-react": "^0.462.0",
+    "clsx": "^2.1.0"
   },
   "devDependencies": {
     "typescript": "^5",
