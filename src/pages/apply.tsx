@@ -11,11 +11,30 @@ import {
 
 import MainLayout from '@/components/layout/MainLayout';
 import { SimpleApplicationForm } from '@/components/forms/SimpleApplicationForm';
+import { devrelService, type DevRelApplication } from '@/services';
 
 const ApplyPage: React.FC = () => {
-  const handleApplicationSuccess = () => {
-    // Could redirect or show additional success actions
-    console.log('Application submitted successfully');
+  const handleApplicationSuccess = async (applicationData: any) => {
+    try {
+      // Store application data using the DevRel service
+      const appData: DevRelApplication = {
+        id: applicationData.applicationId,
+        email: applicationData.email,
+        status: applicationData.status,
+        submittedAt: applicationData.submittedAt,
+      };
+      
+      devrelService.storeApplicationLocally(appData);
+
+      // Show success message
+      console.log('Application submitted successfully:', applicationData);
+      
+      // You could also redirect to a success page or show additional actions
+      // For example, redirect to a welcome page or show next steps
+      
+    } catch (error) {
+      console.error('Error handling application success:', error);
+    }
   };
 
   const benefits = [
@@ -117,12 +136,6 @@ const ApplyPage: React.FC = () => {
             >
               Start Your Application
             </motion.button>
-            <a
-              href="#learn-more"
-              className="text-primary border-2 border-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary hover:text-white transition-colors"
-            >
-              Learn More
-            </a>
           </div>
         </motion.div>
 
@@ -291,18 +304,18 @@ const ApplyPage: React.FC = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="mailto:devrel@theboringeducation.com"
+                href="mailto:theboringeducation@gmail.com"
                 className="bg-white text-primary px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-colors"
               >
                 Email Us
               </a>
               <a
-                href="https://t.me/theboringeducation"
+                href="https://chat.whatsapp.com/EeB7LrPRg2p3RyMOicyIAC"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white hover:text-primary transition-colors"
               >
-                Join Our Telegram
+                Join Our Community
               </a>
             </div>
           </div>

@@ -1,1 +1,2 @@
-export { hiringService, type HiringApplication, type CreateApplicationRequest, type UpdateApplicationRequest } from './hiringService'; 
+export { hiringService, type HiringApplication, type CreateApplicationRequest, type UpdateApplicationRequest } from './hiringService';
+export { devrelService, type DevRelApplication, type DevRelApplicationStatus } from './devrelService'; 

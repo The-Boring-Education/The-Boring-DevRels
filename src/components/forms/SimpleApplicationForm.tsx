@@ -108,7 +108,7 @@ const AVAILABILITY_OPTIONS = [
 ];
 
 interface SimpleApplicationFormProps {
-  onSuccess?: () => void;
+  onSuccess?: (applicationData: any) => void;
 }
 
 export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ onSuccess }) => {
@@ -197,7 +197,7 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
       
       if (result.status && result.data) {
         setSubmitStatus('success');
-        onSuccess?.();
+        onSuccess?.(result.data);
       } else {
         throw new Error(result.message || 'Application submission failed');
       }

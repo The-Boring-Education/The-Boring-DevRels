@@ -1,273 +1,283 @@
-# DevRel Platform - The Boring Education
+# The Boring DevRels - DevRel Application Platform
 
-A comprehensive UI platform for DevRel hiring and management that connects to TBE-Webapp APIs.
-
-## 🏗️ Architecture
-
-**This is the Frontend UI Repository**
-- **DevRel Platform (this repo)**: Frontend UI only - Landing page, application form, dashboards
-- **TBE-Webapp**: Backend APIs, database models, authentication logic
+A comprehensive platform for managing Developer Relations (DevRel) applications and team members, built with Next.js and integrated with The Boring Education (TBE) APIs.
 
 ## 🚀 Features
 
-### Landing Page
-- **Simplified Design**: Clean, focused landing page driving to application
-- **Clear Call-to-Action**: Prominent apply buttons and streamlined messaging
-- **Mobile Responsive**: Optimized for all device types
+### Core Functionality
+- **Application Management**: Complete DevRel application submission and tracking system
+- **Status Tracking**: Real-time application status updates with progress indicators
+- **TBE Integration**: Seamless integration with TBE Webapp APIs for data persistence
+- **User Experience**: Modern, responsive UI with smooth animations and micro-interactions
+- **Local Storage**: Offline-capable application data storage and retrieval
 
-### Application Process
-- **Simple Form**: Only essential questions, quick 5-minute application
-- **Real-time Validation**: Instant feedback and error handling
-- **Beautiful UX**: Smooth animations and intuitive design
+### Application Features
+- **Comprehensive Forms**: Detailed application forms with validation
+- **Progress Tracking**: Visual progress indicators for application stages
+- **Status Updates**: Real-time status checking and updates
+- **Interview Management**: Interview scheduling and meeting link management
+- **Performance Metrics**: Track DevRel team member performance and onboarding progress
 
-### Dashboard Access
-- **Role-based Access**: Different views for Advocates vs Leads
-- **Task Management**: Clean interface for viewing and completing tasks
-- **Performance Tracking**: Visual progress indicators and metrics
+## 🏗️ Architecture
 
-## 🛠️ Tech Stack
+### Frontend (DevRels)
+- **Next.js**: React-based framework for the frontend
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first CSS framework
+- **Framer Motion**: Smooth animations and transitions
+- **React Hook Form**: Form management with validation
 
-- **Frontend**: Next.js 15, React 19, TypeScript, Tailwind CSS
-- **UI Components**: Headless UI, Heroicons, Framer Motion
-- **Forms**: React Hook Form with Zod validation
-- **API Integration**: Axios for TBE-Webapp API calls
-- **Authentication**: NextAuth.js (configured with TBE-Webapp)
+### Backend (TBE Webapp)
+- **Node.js/Next.js API Routes**: RESTful API endpoints
+- **MongoDB**: Database for storing application data
+- **Mongoose**: MongoDB object modeling
+- **NextAuth.js**: Authentication and session management
 
-## 📋 Prerequisites
+### Data Flow
+```
+DevRels Frontend → TBE Webapp APIs → MongoDB Database
+     ↓                    ↓              ↓
+Local Storage ← Status Updates ← Data Persistence
+```
 
-- Node.js 22.x or higher
-- Running TBE-Webapp instance (for API backend)
-- Environment variables configured
+## 🔌 API Integration
 
-## ⚡ Quick Start
+### TBE Webapp Endpoints
 
-### 1. Clone and Install
+#### DevRel Application Endpoints
+- `POST /api/v1/devrel/apply` - Submit new DevRel application
+- `GET /api/v1/devrel/applications` - Get all applications (DevRel Advocates only)
+- `PUT /api/v1/devrel/applications` - Update application status
+- `GET /api/v1/devrel/applications/status/[email]` - Check application status by email
+- `GET /api/v1/devrel/dashboard` - Get DevRel dashboard data
+- `GET /api/v1/devrel/tasks` - Manage DevRel tasks
 
+#### Data Models
+- **DevRelLead**: Main application and team member model
+- **DevRelTask**: Task management and tracking
+- **User**: Authentication and role management
+
+### Application Status Flow
+```
+applied → reviewing → interview_scheduled → approved → offer_sent → offer_accepted → onboarded
+   ↓         ↓              ↓              ↓          ↓              ↓              ↓
+  25%       50%            75%            90%        95%            98%            100%
+```
+
+## 🛠️ Development Setup
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Access to TBE Webapp APIs
+
+### Environment Variables
+Create a `.env.local` file:
 ```bash
-git clone <repository-url>
-cd The-Boring-DevRels
-npm install --legacy-peer-deps
+# TBE Webapp API Configuration
+NEXT_PUBLIC_API_BASE_URL=https://your-tbe-webapp-domain.com
+
+# Next.js Configuration
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key
 ```
 
-### 2. Environment Setup
-
-Create a `.env.local` file in the root directory:
-
-```env
-# API Configuration
-NEXT_PUBLIC_API_BASE_URL=http://localhost:3000
-# ^ This should point to your TBE-Webapp instance
-
-# NextAuth Configuration
-NEXTAUTH_URL=http://localhost:3001
-NEXTAUTH_SECRET=your-nextauth-secret-here
-
-# Environment
-NODE_ENV=development
-```
-
-### 3. TBE-Webapp Setup
-
-**Important**: This frontend requires TBE-Webapp to be running with DevRel APIs.
-
-Ensure TBE-Webapp has:
-- DevRel database models installed
-- DevRel API endpoints available at `devrel/*`
-- User roles updated to include `DEVREL_ADVOCATE` and `DEVREL_LEAD`
-
-### 4. Add DevRel Advocates
-
-In your TBE-Webapp database, add Campus Connect team members:
-
-```javascript
-// Add to User collection in TBE-Webapp
-{
-  name: "John Doe",
-  email: "john@example.com",
-  occupation: "DEVREL_ADVOCATE"  // This gives admin access
-}
-```
-
-### 5. Run the Development Server
-
+### Installation
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3001](http://localhost:3001) to see the DevRel platform.
+### Development Commands
+```bash
+# Type checking
+npm run type-check
 
-**Note**: The app runs on port 3001 to avoid conflicts with TBE-Webapp on port 3000.
+# Linting
+npm run lint
 
-## 🏗️ Project Structure
+# Build
+npm run build
 
-```
-src/
-├── components/          # Reusable React components
-│   ├── forms/          # Application forms
-│   ├── dashboards/     # Dashboard components
-│   └── ui/             # UI components
-├── config/             # Configuration files
-│   └── api.ts          # API endpoints and settings
-├── pages/              # Next.js pages
-│   ├── api/            # NextAuth configuration only
-│   ├── index.tsx       # Landing page
-│   ├── apply.tsx       # Application page
-│   └── dashboard.tsx   # Dashboard page
-├── utils/              # Utility functions
-└── styles/             # Global styles
+# Start production
+npm start
 ```
 
-## 🔗 API Integration
+## 📱 Components
 
-This frontend connects to TBE-Webapp APIs:
+### Core Components
+- **SimpleApplicationForm**: Main application submission form
+- **ApplicationStatusTracker**: Real-time status tracking and progress display
+- **MainLayout**: Application layout wrapper
+- **Sidebar**: Navigation sidebar
 
-- **Application Submission**: `POST devrel/apply`
-- **Dashboard Data**: `GET devrel/dashboard` 
-- **Task Management**: `GET/PUT devrel/tasks`
-- **Application Management**: `GET/PUT devrel/applications`
+### Form Features
+- **Validation**: Comprehensive form validation using Zod
+- **Real-time Updates**: Live form validation and error handling
+- **Progress Indicators**: Visual feedback during submission
+- **Email Checking**: Duplicate application prevention
 
-## 🔐 Authentication & Authorization
+### Status Tracking
+- **Progress Bars**: Visual progress indicators
+- **Status Icons**: Contextual status representations
+- **Next Steps**: Dynamic next step guidance
+- **Real-time Updates**: Live status checking
 
-Authentication is handled by TBE-Webapp with role-based access:
+## 🔄 Services
 
-- **DevRel Advocates**: `occupation: "DEVREL_ADVOCATE"` in User model
-- **DevRel Leads**: Approved applicants in DevRelLead model
+### DevRel Service
+- **Application Management**: Submit, check, and track applications
+- **Local Storage**: Offline data persistence
+- **Status Updates**: Real-time status checking
+- **Progress Calculation**: Dynamic progress tracking
 
-### Access Control
+### Hiring Service
+- **Legacy Support**: Maintains compatibility with existing hiring system
+- **API Integration**: Connects to TBE hiring APIs
+- **Data Validation**: Ensures data integrity
 
-The frontend checks user roles via API calls to determine dashboard access.
+## 📊 Data Management
 
-## 📊 API Integration
+### Local Storage
+- **Application Data**: Stores current application information
+- **Status Cache**: Caches application status for offline access
+- **User Preferences**: Stores user-specific settings
 
-All backend APIs are hosted in TBE-Webapp:
-
-### DevRel APIs in TBE-Webapp
-- `POST devrel/apply` - Submit application
-- `GET devrel/applications` - Get all applications (Advocates)
-- `PUT devrel/applications` - Update application status (Advocates)
-- `GET devrel/dashboard` - Get role-based dashboard data
-- `GET devrel/tasks` - Get tasks based on user role
-- `POST devrel/tasks` - Create new task (Advocates)
-- `PUT devrel/tasks` - Update task progress
-
-### Frontend Routes
-- `/` - Landing page with clear CTA to apply
-- `/apply` - Simple application form
-- `/dashboard` - Role-based dashboard (Advocates vs Leads)
+### API Integration
+- **Real-time Sync**: Synchronizes with TBE backend
+- **Error Handling**: Graceful fallback for API failures
+- **Data Validation**: Ensures data consistency
 
 ## 🚀 Deployment
 
 ### Production Build
-
 ```bash
+# Build the application
 npm run build
+
+# Start production server
 npm start
 ```
 
-### Environment Variables for Production
+### Environment Configuration
+- Set `NEXT_PUBLIC_API_BASE_URL` to production TBE Webapp URL
+- Configure `NEXTAUTH_SECRET` for production
+- Set `NEXTAUTH_URL` to production domain
 
-Update your environment variables for production:
+### Deployment Platforms
+- **Vercel**: Recommended for Next.js applications
+- **Netlify**: Alternative deployment option
+- **Self-hosted**: Docker or traditional hosting
 
-```env
-NEXT_PUBLIC_API_BASE_URL=https://your-tbe-webapp-domain.com
-NEXTAUTH_URL=https://your-devrel-domain.com
-# ... other production variables
-```
+## 🔒 Security
 
-### Deployment Checklist
+### Authentication
+- **NextAuth.js**: Secure authentication system
+- **Session Management**: Secure session handling
+- **Role-based Access**: Different access levels for different user types
 
-1. ✅ Deploy TBE-Webapp with DevRel APIs first
-2. ✅ Update API_BASE_URL to point to TBE-Webapp
-3. ✅ Configure authentication with same Google OAuth
-4. ✅ Add DevRel Advocates to TBE-Webapp database
-5. ✅ Test application flow end-to-end
+### Data Protection
+- **Input Validation**: Comprehensive input sanitization
+- **API Security**: Secure API endpoint access
+- **Local Storage**: Secure local data storage
 
-## 📈 Features Status
+## 📈 Monitoring & Analytics
 
-### ✅ Completed
-- [x] **Simple Application Form** - Streamlined 5-minute application
-- [x] **Landing Page** - Clean, conversion-focused design
-- [x] **API Integration** - Connected to TBE-Webapp backend
-- [x] **Role-based Dashboards** - Advocate and Lead views
-- [x] **Authentication Flow** - NextAuth integration
-- [x] **Task Management UI** - Dashboard for viewing/completing tasks
-- [x] **Responsive Design** - Mobile-optimized interface
+### Error Tracking
+- **Console Logging**: Development error tracking
+- **API Monitoring**: API endpoint health monitoring
+- **User Analytics**: Application usage tracking
 
-### 🚧 Future Enhancements  
-- [ ] 📧 Email notification integration
-- [ ] 📹 Video upload and quiz system UI
-- [ ] 📅 Interview scheduling interface
-- [ ] 📄 PDF offer letter generation
-- [ ] 📊 Advanced analytics dashboards
-- [ ] 🔔 Real-time notifications
-- [ ] 🎨 Enhanced UI animations
-- [ ] 📱 Progressive Web App features
+### Performance
+- **Loading States**: User feedback during operations
+- **Progress Indicators**: Visual progress representation
+- **Optimistic Updates**: Immediate UI feedback
 
 ## 🤝 Contributing
 
+### Development Workflow
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-## 📝 Development Guidelines
+### Code Standards
+- **TypeScript**: Use strict typing
+- **ESLint**: Follow linting rules
+- **Prettier**: Consistent code formatting
+- **Testing**: Write tests for new features
 
-### Code Style
-- Use TypeScript for all new files
-- Follow existing naming conventions
-- Add proper type definitions
-- Use Tailwind CSS for styling
+## 📝 API Documentation
 
-### Frontend Best Practices
-- Keep components small and focused
-- Use proper error boundaries
-- Implement loading states
-- Follow accessibility guidelines
+### Application Submission
+```typescript
+POST /api/v1/devrel/apply
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "techStack": ["JavaScript", "React"],
+  "experienceLevel": "intermediate",
+  "availability": "10-15",
+  "motivation": "Passionate about community building...",
+  "whyTBE": "TBE's mission aligns with my values...",
+  "commitments": {
+    "weeklyLearning": true,
+    "communityParticipation": true,
+    "eventAttendance": false,
+    "contentCreation": true,
+    "socialMediaEngagement": false
+  }
+}
+```
 
-### API Integration
-- Use the configured axios instance
-- Handle errors gracefully
-- Implement proper loading states
-- Cache API responses when appropriate
+### Status Check
+```typescript
+GET /api/v1/devrel/applications/status/john@example.com
+```
 
-## 🐛 Troubleshooting
+## 🔮 Future Enhancements
 
-### Common Issues
+### Planned Features
+- **Dashboard**: Comprehensive DevRel dashboard
+- **Task Management**: Task assignment and tracking
+- **Performance Metrics**: Advanced analytics and reporting
+- **Team Collaboration**: Team member communication tools
+- **Mobile App**: Native mobile application
 
-1. **API Connection Failed**: Ensure TBE-Webapp is running and `NEXT_PUBLIC_API_BASE_URL` is correct
-2. **Authentication Issues**: Verify Google OAuth settings match TBE-Webapp configuration  
-3. **Port Conflicts**: App runs on port 3001 to avoid conflicts with TBE-Webapp
-4. **Role Access Denied**: Check user has correct `occupation` field in TBE-Webapp database
-
-### Debug Mode
-
-1. Set `NODE_ENV=development` in `.env.local`
-2. Check browser console for API errors
-3. Verify TBE-Webapp APIs are responding at `devrel/*`
-4. Test authentication flow with TBE-Webapp
+### Integration Opportunities
+- **Slack Integration**: Team communication
+- **Email Automation**: Automated status updates
+- **Calendar Integration**: Interview scheduling
+- **Analytics Platform**: Advanced reporting
 
 ## 📞 Support
 
-For questions or support:
-- Create an issue in the repository
-- Contact the development team
-- Check the documentation for common solutions
+### Getting Help
+- **Documentation**: Check this README first
+- **Issues**: Report bugs via GitHub issues
+- **Discussions**: Join community discussions
+- **Email**: Contact the development team
+
+### Troubleshooting
+- **API Issues**: Check TBE Webapp API status
+- **Environment Variables**: Verify configuration
+- **Build Errors**: Check Node.js version and dependencies
+- **Runtime Errors**: Check browser console and network tab
 
 ## 📄 License
 
-This project is proprietary software of The Boring Education.
-
-## 🎯 Summary
-
-This DevRel Platform provides a clean, focused UI for:
-- **Landing Page**: Drives visitors to apply with clear messaging
-- **Simple Application**: Quick 5-minute form with only essential questions  
-- **Role-based Dashboards**: Different views for Advocates vs Leads
-- **Task Management**: Clean interface for DevRel workflow
-
-**Architecture**: UI-only frontend + TBE-Webapp backend APIs = Scalable & maintainable
+This project is part of The Boring Education ecosystem and follows the same licensing terms.
 
 ---
 
-Built with ❤️ by The Boring Education team for the developer community.
+**Built with ❤️ by The Boring Education Team**
