@@ -17,8 +17,8 @@ interface MainLayoutProps {
   };
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ 
-  children, 
+const MainLayout: React.FC<MainLayoutProps> = ({
+  children,
   title = 'The Boring DevRels',
   description = 'Join The Boring Education\'s DevRel team and help build an amazing developer community.',
   showNavigation = true,
@@ -36,10 +36,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({
         <title>{pageTitle}</title>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
-        
+
         {/* Canonical URL */}
         {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-        
+
         {/* Open Graph */}
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={description} />
@@ -47,19 +47,19 @@ const MainLayout: React.FC<MainLayoutProps> = ({
         <meta property="og:site_name" content="The Boring DevRels" />
         {ogImage && <meta property="og:image" content={ogImage} />}
         {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-        
+
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={description} />
         {ogImage && <meta name="twitter:image" content={ogImage} />}
-        
+
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
-        
+
         {/* Viewport */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
+
         {/* Structured Data */}
         <script
           type="application/ld+json"
@@ -70,8 +70,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({
               name: pageTitle,
               description: description,
               url: canonicalUrl || router.asPath,
-              publisher: { 
-                "@type": "Organization", 
+              publisher: {
+                "@type": "Organization",
                 name: "The Boring DevRels",
                 url: "https://devrels.theboringeducation.com"
               },
@@ -87,7 +87,6 @@ const MainLayout: React.FC<MainLayoutProps> = ({
       </Head>
 
       <div className="min-h-screen flex flex-col bg-gray-50">
-        {/* Header */}
         {showNavigation && (
           <header className="bg-white shadow-sm sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,10 +94,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({
                 {/* Logo and Branding */}
                 <Link href="/" className="flex items-center space-x-3">
                   <div>
-                    <h1 className="text-xl font-bold text-gray-900">
+                    <h1 className="text-xl font-bold text-gray-700">
                       The Boring DevRels
                     </h1>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-700">
                       by The Boring Education
                     </p>
                   </div>
@@ -108,45 +107,48 @@ const MainLayout: React.FC<MainLayoutProps> = ({
                 <nav className="hidden md:flex items-center space-x-6">
                   {router.pathname === '/' ? (
                     <>
-                      <a href="#about" className="text-gray-600 hover:text-gray-900 transition-colors">
+                      <a href="#about" className="text-gray-700 hover:text-gray-700 transition-colors">
                         About
                       </a>
-                      <a href="#why-join" className="text-gray-600 hover:text-gray-900 transition-colors">
+                      <a href="#process" className="text-gray-700 hover:text-gray-700 transition-colors">
+                        Process
+                      </a>
+                      <a href="#perks" className="text-gray-700 hover:text-gray-700 transition-colors">
                         Why Join
                       </a>
-                      <Link href="/apply" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                      <Link href="/apply" className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-hover transition-colors">
                         Apply Now
                       </Link>
                     </>
                   ) : (
                     <>
-                      <Link href="/" className="text-gray-600 hover:text-gray-900 transition-colors">
+                      <Link href="/" className="text-gray-700 hover:text-gray-700 transition-colors">
                         Home
                       </Link>
                       {!user ? (
-                        <Link href="/apply" className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors">
+                        <Link href="/apply" className="bg-primary text-white px-4 py-2 rounded-md hover:bg-primary-hover transition-colors">
                           Apply Now
                         </Link>
                       ) : (
                         <div className="flex items-center space-x-4">
                           {user.role && (
-                            <Link href="/dashboard" className="text-gray-600 hover:text-gray-900 transition-colors">
+                            <Link href="/dashboard" className="text-gray-700 hover:text-gray-700 transition-colors">
                               Dashboard
                             </Link>
                           )}
                           <div className="flex items-center space-x-2">
                             {user.picture && (
-                              <img 
-                                src={user.picture} 
+                              <img
+                                src={user.picture}
                                 alt={user.name}
                                 className="w-8 h-8 rounded-full"
                               />
                             )}
-                            <span className="text-sm text-gray-600">{user.name}</span>
+                            <span className="text-sm text-gray-700">{user.name}</span>
                           </div>
                           <button
                             onClick={signOut}
-                            className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
+                            className="text-sm text-gray-700 hover:text-gray-700 transition-colors"
                           >
                             Sign Out
                           </button>
@@ -158,7 +160,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 
                 {/* Mobile menu button */}
                 <div className="md:hidden">
-                  <Link href={user ? "/dashboard" : "/apply"} className="bg-blue-600 text-white px-3 py-2 rounded-md text-sm">
+                  <Link href={user ? "/dashboard" : "/apply"} className="bg-primary text-white px-3 py-2 rounded-md text-sm hover:bg-primary-hover transition-colors">
                     {user ? "Dashboard" : "Apply"}
                   </Link>
                 </div>
@@ -179,10 +181,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({
               {/* Brand */}
               <div className="col-span-1 md:col-span-2">
                 <h3 className="text-lg font-bold mb-3">The Boring DevRels</h3>
-                <p className="text-gray-300 mb-4">
+                <p className="text-gray-700-300 mb-4">
                   Building the future of developer education through community, content, and connections.
                 </p>
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-gray-700-400">
                   by The Boring Education
                 </p>
               </div>
@@ -192,18 +194,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({
                 <h4 className="font-semibold mb-3">Quick Links</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <Link href="/" className="text-gray-300 hover:text-white transition-colors">
+                    <Link href="/" className="text-gray-700-300 hover:text-white transition-colors">
                       Home
                     </Link>
                   </li>
                   <li>
-                    <Link href="/apply" className="text-gray-300 hover:text-white transition-colors">
+                    <Link href="/apply" className="text-gray-700-300 hover:text-white transition-colors">
                       Apply Now
                     </Link>
                   </li>
                   {user && user.role && (
                     <li>
-                      <Link href="/dashboard" className="text-gray-300 hover:text-white transition-colors">
+                      <Link href="/dashboard" className="text-gray-700-300 hover:text-white transition-colors">
                         Dashboard
                       </Link>
                     </li>
@@ -216,41 +218,41 @@ const MainLayout: React.FC<MainLayoutProps> = ({
                 <h4 className="font-semibold mb-3">Connect</h4>
                 <ul className="space-y-2 text-sm">
                   <li>
-                    <a 
-                      href="https://www.linkedin.com/company/theboringeducation" 
-                      target="_blank" 
+                    <a
+                      href="https://www.linkedin.com/company/theboringeducation"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-300 hover:text-white transition-colors"
+                      className="text-gray-700-300 hover:text-white transition-colors"
                     >
                       LinkedIn
                     </a>
                   </li>
                   <li>
-                    <a 
-                      href="https://www.youtube.com/@TheBoringEducation" 
-                      target="_blank" 
+                    <a
+                      href="https://www.youtube.com/@TheBoringEducation"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-300 hover:text-white transition-colors"
+                      className="text-gray-700-300 hover:text-white transition-colors"
                     >
                       YouTube
                     </a>
                   </li>
                   <li>
-                    <a 
-                      href="https://www.instagram.com/theboringeducation" 
-                      target="_blank" 
+                    <a
+                      href="https://www.instagram.com/theboringeducation"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-300 hover:text-white transition-colors"
+                      className="text-gray-700-300 hover:text-white transition-colors"
                     >
                       Instagram
                     </a>
                   </li>
                   <li>
-                    <a 
-                      href="https://chat.whatsapp.com/EeB7LrPRg2p3RyMOicyIAC" 
-                      target="_blank" 
+                    <a
+                      href="https://chat.whatsapp.com/EeB7LrPRg2p3RyMOicyIAC"
+                      target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-300 hover:text-white transition-colors"
+                      className="text-gray-700-300 hover:text-white transition-colors"
                     >
                       Community
                     </a>
@@ -261,31 +263,31 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 
             {/* Bottom Bar */}
             <div className="border-t border-gray-700 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center">
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-700-400 text-sm">
                 © 2024 The Boring Education. Building the future of developer education.
               </p>
               <div className="flex space-x-4 mt-4 sm:mt-0">
-                <a 
-                  href="https://theboringeducation.com" 
-                  target="_blank" 
+                <a
+                  href="https://theboringeducation.com"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-700-400 hover:text-white text-sm transition-colors"
                 >
                   Main Website
                 </a>
-                <a 
-                  href="https://theboringeducation.com/privacy" 
-                  target="_blank" 
+                <a
+                  href="https://theboringeducation.com/privacy"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-700-400 hover:text-white text-sm transition-colors"
                 >
                   Privacy
                 </a>
-                <a 
-                  href="https://theboringeducation.com/terms" 
-                  target="_blank" 
+                <a
+                  href="https://theboringeducation.com/terms"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-700-400 hover:text-white text-sm transition-colors"
                 >
                   Terms
                 </a>

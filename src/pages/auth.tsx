@@ -45,10 +45,10 @@ const AuthPage: React.FC = () => {
           className="max-w-md w-full space-y-8"
         >
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            <h2 className="text-3xl font-bold text-gray-700 mb-2">
               Welcome to DevRels
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-700">
               Sign in to access your dashboard and start your DevRel journey
             </p>
           </div>
@@ -82,7 +82,7 @@ const AuthPage: React.FC = () => {
                 </button>
 
                 <div className="text-center">
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-700">
                     By signing in, you agree to our{' '}
                     <a href="https://theboringeducation.com/terms" className="text-blue-600 hover:text-blue-500">
                       Terms of Service
@@ -97,7 +97,7 @@ const AuthPage: React.FC = () => {
             </div>
 
             <div className="text-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-700">
                 Don't have access yet?{' '}
                 <a href="/apply" className="text-blue-600 hover:text-blue-500 font-medium">
                   Apply to join our DevRel team

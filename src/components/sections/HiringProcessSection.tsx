@@ -23,10 +23,10 @@ export default function HiringProcessSection() {
 								</div>
 
 								<div className="text-3xl mb-4">{s.icon}</div>
-								<Text level="h3" className="text-xl font-bold text-gray-900 mb-3">
+								<Text level="h3" className="text-xl font-bold text-gray-700 mb-3">
 									{s.title}
 								</Text>
-								<Text level="p" className="text-gray-600 leading-relaxed">
+								<Text level="p" className="text-gray-700 leading-relaxed">
 									{s.desc}
 								</Text>
 							</div>
@@ -35,7 +35,7 @@ export default function HiringProcessSection() {
 				</div>
 
 				<div className="lg:hidden mt-8 flex justify-center">
-					<div className="flex items-center gap-2 text-gray-400">
+					<div className="flex items-center gap-2 text-gray-700-400">
 						<span>↓</span>
 						<span>↓</span>
 						<span>↓</span>

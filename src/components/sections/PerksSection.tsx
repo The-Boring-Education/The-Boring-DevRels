@@ -20,7 +20,7 @@ export default function PerksSection() {
 								{item.icon}
 							</div>
 							<div className="flex-1">
-								<Text level="p" className="text-gray-900 text-lg leading-relaxed font-medium">
+								<Text level="p" className="text-gray-700 text-lg leading-relaxed font-medium">
 									{item.perk}
 								</Text>
 							</div>

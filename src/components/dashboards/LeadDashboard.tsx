@@ -99,11 +99,11 @@ export const LeadDashboard: React.FC = () => {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <ExclamationTriangleIcon className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Dashboard</h2>
-          <p className="text-gray-600">{error}</p>
+          <h2 className="text-xl font-semibold text-gray-700 mb-2">Error Loading Dashboard</h2>
+          <p className="text-gray-700">{error}</p>
           <button 
             onClick={fetchDashboardData}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            className="mt-4 px-4 py-2 bg-[#FF5757] text-white rounded-md hover:bg-blue-700"
           >
             Try Again
           </button>
@@ -119,14 +119,13 @@ export const LeadDashboard: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-bold text-gray-900">Welcome back, {data.lead.name}! 👋</h1>
-        <p className="text-gray-600 mt-2">Your DevRel journey dashboard</p>
+        <h1 className="text-3xl font-bold text-gray-700">Welcome back, {data.lead.name}! 👋</h1>
+        <p className="text-gray-700 mt-2">Your DevRel journey dashboard</p>
       </motion.div>
 
       {/* Status Alert */}
@@ -162,9 +161,9 @@ export const LeadDashboard: React.FC = () => {
               <ClipboardDocumentListIcon className="w-6 h-6 text-blue-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Total Tasks</p>
-              <p className="text-2xl font-bold text-gray-900">{totalTasks}</p>
-              <p className="text-sm text-gray-400">{data.tasks.pending.length} pending</p>
+              <p className="text-sm font-medium text-gray-700">Total Tasks</p>
+              <p className="text-2xl font-bold text-gray-700">{totalTasks}</p>
+              <p className="text-sm text-gray-700-400">{data.tasks.pending.length} pending</p>
             </div>
           </div>
         </div>
@@ -175,9 +174,9 @@ export const LeadDashboard: React.FC = () => {
               <CheckCircleIcon className="w-6 h-6 text-green-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Completed</p>
-              <p className="text-2xl font-bold text-gray-900">{data.tasks.completed.length}</p>
-              <p className="text-sm text-gray-400">{completionRate}% completion rate</p>
+              <p className="text-sm font-medium text-gray-700">Completed</p>
+              <p className="text-2xl font-bold text-gray-700">{data.tasks.completed.length}</p>
+              <p className="text-sm text-gray-700-400">{completionRate}% completion rate</p>
             </div>
           </div>
         </div>
@@ -188,9 +187,9 @@ export const LeadDashboard: React.FC = () => {
               <StarIcon className="w-6 h-6 text-purple-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Streak</p>
-              <p className="text-2xl font-bold text-gray-900">{data.lead.performanceMetrics.streakCount}</p>
-              <p className="text-sm text-gray-400">days active</p>
+              <p className="text-sm font-medium text-gray-700">Streak</p>
+              <p className="text-2xl font-bold text-gray-700">{data.lead.performanceMetrics.streakCount}</p>
+              <p className="text-sm text-gray-700-400">days active</p>
             </div>
           </div>
         </div>
@@ -201,9 +200,9 @@ export const LeadDashboard: React.FC = () => {
               <TrophyIcon className="w-6 h-6 text-orange-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-500">Onboarding</p>
-              <p className="text-2xl font-bold text-gray-900">{data.onboardingProgress.percentage}%</p>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm font-medium text-gray-700">Onboarding</p>
+              <p className="text-2xl font-bold text-gray-700">{data.onboardingProgress.percentage}%</p>
+              <p className="text-sm text-gray-700-400">
                 {data.onboardingProgress.completedTasks}/{data.onboardingProgress.totalTasks} complete
               </p>
             </div>
@@ -222,7 +221,7 @@ export const LeadDashboard: React.FC = () => {
             className="bg-white rounded-lg shadow-sm border"
           >
             <div className="p-6 border-b">
-              <h2 className="text-lg font-semibold text-gray-900">Your Tasks</h2>
+              <h2 className="text-lg font-semibold text-gray-700">Your Tasks</h2>
             </div>
             <div className="p-6">
               {/* Overdue Tasks */}
@@ -269,7 +268,7 @@ export const LeadDashboard: React.FC = () => {
                           </div>
                           <button
                             onClick={() => markTaskComplete(task._id)}
-                            className="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
+                            className="px-3 py-1 bg-[#FF5757] text-white text-sm rounded hover:bg-blue-700"
                           >
                             Mark Complete
                           </button>
@@ -283,7 +282,7 @@ export const LeadDashboard: React.FC = () => {
               {/* Pending Tasks */}
               {data.tasks.pending.length > 0 && (
                 <div className="mb-6">
-                  <h3 className="text-gray-600 font-medium mb-3">
+                  <h3 className="text-gray-700 font-medium mb-3">
                     Pending ({data.tasks.pending.length})
                   </h3>
                   <div className="space-y-2">
@@ -291,10 +290,10 @@ export const LeadDashboard: React.FC = () => {
                       <div key={index} className="p-3 bg-gray-50 border border-gray-200 rounded-lg">
                         <div className="flex items-center justify-between">
                           <div>
-                            <p className="font-medium text-gray-900">{task.title}</p>
-                            <p className="text-sm text-gray-600">{task.description}</p>
+                            <p className="font-medium text-gray-700">{task.title}</p>
+                            <p className="text-sm text-gray-700">{task.description}</p>
                             {task.dueDate && (
-                              <p className="text-xs text-gray-500 mt-1 flex items-center">
+                              <p className="text-xs text-gray-700 mt-1 flex items-center">
                                 <CalendarIcon className="w-3 h-3 mr-1" />
                                 Due: {new Date(task.dueDate).toLocaleDateString()}
                               </p>
@@ -315,9 +314,9 @@ export const LeadDashboard: React.FC = () => {
 
               {totalTasks === 0 && (
                 <div className="text-center py-8">
-                  <ClipboardDocumentListIcon className="w-12 h-12 text-gray-400 mx-auto mb-3" />
-                  <p className="text-gray-500">No tasks assigned yet</p>
-                  <p className="text-sm text-gray-400">Check back later for new assignments!</p>
+                  <ClipboardDocumentListIcon className="w-12 h-12 text-gray-700-400 mx-auto mb-3" />
+                  <p className="text-gray-700">No tasks assigned yet</p>
+                  <p className="text-sm text-gray-700-400">Check back later for new assignments!</p>
                 </div>
               )}
             </div>
@@ -334,22 +333,22 @@ export const LeadDashboard: React.FC = () => {
             className="bg-white rounded-lg shadow-sm border"
           >
             <div className="p-6 border-b">
-              <h2 className="text-lg font-semibold text-gray-900">Onboarding Progress</h2>
+              <h2 className="text-lg font-semibold text-gray-700">Onboarding Progress</h2>
             </div>
             <div className="p-6">
               <div className="mb-4">
-                <div className="flex justify-between text-sm text-gray-600 mb-2">
+                <div className="flex justify-between text-sm text-gray-700 mb-2">
                   <span>Progress</span>
                   <span>{data.onboardingProgress.percentage}%</span>
                 </div>
                 <div className="w-full bg-gray-200 rounded-full h-2">
                   <div 
-                    className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                    className="bg-[#FF5757] h-2 rounded-full transition-all duration-300"
                     style={{ width: `${data.onboardingProgress.percentage}%` }}
                   ></div>
                 </div>
               </div>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-gray-700">
                 {data.onboardingProgress.completedTasks} of {data.onboardingProgress.totalTasks} tasks completed
               </p>
               {data.onboardingProgress.nextTask && (
@@ -369,23 +368,23 @@ export const LeadDashboard: React.FC = () => {
             className="bg-white rounded-lg shadow-sm border"
           >
             <div className="p-6 border-b">
-              <h2 className="text-lg font-semibold text-gray-900">Your Performance</h2>
+              <h2 className="text-lg font-semibold text-gray-700">Your Performance</h2>
             </div>
             <div className="p-6 space-y-4">
               <div className="flex justify-between">
-                <span className="text-gray-600">Tasks Completed</span>
+                <span className="text-gray-700">Tasks Completed</span>
                 <span className="font-medium">{data.lead.performanceMetrics.tasksCompleted}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Tasks Assigned</span>
+                <span className="text-gray-700">Tasks Assigned</span>
                 <span className="font-medium">{data.lead.performanceMetrics.tasksAssigned}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Completion Rate</span>
+                <span className="text-gray-700">Completion Rate</span>
                 <span className="font-medium">{completionRate}%</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Current Streak</span>
+                <span className="text-gray-700">Current Streak</span>
                 <span className="font-medium">{data.lead.performanceMetrics.streakCount} days</span>
               </div>
             </div>
@@ -399,7 +398,7 @@ export const LeadDashboard: React.FC = () => {
             className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg border border-blue-200"
           >
             <div className="p-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-4">💡 DevRel Tips</h2>
+              <h2 className="text-lg font-semibold text-gray-700 mb-4">💡 DevRel Tips</h2>
               <ul className="space-y-2 text-sm text-gray-700">
                 <li>• Complete tasks on time to maintain your streak</li>
                 <li>• Engage actively in the community</li>

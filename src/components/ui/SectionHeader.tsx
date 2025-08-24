@@ -9,10 +9,10 @@ type SectionHeaderProps = {
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({ heading, focusText, headingLevel = 2 }) => (
 	<div className="text-center mb-16">
-		<Text level={`h${headingLevel}`} className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+		<Text level={`h${headingLevel}`} className="text-3xl md:text-4xl font-bold text-gray-700 mb-4">
 			{heading}
 		</Text>
-		<Text level="p" className="text-xl text-gray-600 max-w-3xl mx-auto">
+		<Text level="p" className="text-xl text-gray-700 max-w-3xl mx-auto">
 			{focusText}
 		</Text>
 	</div>

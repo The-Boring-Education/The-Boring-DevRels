@@ -33,7 +33,7 @@ export default function CallToActionSection() {
 					<Link
 						href={LINKS.viewSessionDetails}
 						target="_blank"
-						className="text-white underline hover:text-gray-200 transition-colors duration-300 text-xl"
+						className="text-white underline hover:text-gray-700-200 transition-colors duration-300 text-xl"
 					>
 						{secondaryCtaText}
 					</Link>

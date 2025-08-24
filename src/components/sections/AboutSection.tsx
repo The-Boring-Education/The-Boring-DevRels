@@ -23,10 +23,10 @@ export default function AboutSection() {
 							className="flex flex-col items-center text-center p-6 rounded-xl border border-gray-200 bg-white shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
 						>
 							<div className="text-4xl mb-4">{item.icon}</div>
-							<Text level="h3" className="text-xl font-semibold text-gray-900 mb-3">
+							<Text level="h3" className="text-xl font-semibold text-gray-700 mb-3">
 								{item.title}
 							</Text>
-							<Text level="p" className="text-gray-600 leading-relaxed">
+							<Text level="p" className="text-gray-700 leading-relaxed">
 								{item.desc}
 							</Text>
 						</div>

@@ -73,11 +73,11 @@ export const AdvocateDashboard: React.FC = () => {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <XCircleIcon className="w-16 h-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">Error Loading Dashboard</h2>
-          <p className="text-gray-600">{error}</p>
+          <h2 className="text-xl font-semibold text-gray-700 mb-2">Error Loading Dashboard</h2>
+          <p className="text-gray-700">{error}</p>
           <button 
             onClick={fetchDashboardData}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+            className="mt-4 px-4 py-2 bg-[#FF5757] text-white rounded-md hover:bg-blue-700"
           >
             Try Again
           </button>
@@ -121,14 +121,13 @@ export const AdvocateDashboard: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-bold text-gray-900">DevRel Advocate Dashboard</h1>
-        <p className="text-gray-600 mt-2">Manage applications, tasks, and team performance</p>
+        <h1 className="text-3xl font-bold text-gray-700">DevRel Advocate Dashboard</h1>
+        <p className="text-gray-700 mt-2">Manage applications, tasks, and team performance</p>
       </motion.div>
 
       {/* Stats Grid */}
@@ -145,9 +144,9 @@ export const AdvocateDashboard: React.FC = () => {
                 <stat.icon className={`w-6 h-6 text-${stat.color}-600`} />
               </div>
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-500">{stat.title}</p>
-                <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                <p className="text-sm text-gray-400">{stat.change}</p>
+                <p className="text-sm font-medium text-gray-700">{stat.title}</p>
+                <p className="text-2xl font-bold text-gray-700">{stat.value}</p>
+                <p className="text-sm text-gray-700-400">{stat.change}</p>
               </div>
             </div>
           </div>
@@ -164,7 +163,7 @@ export const AdvocateDashboard: React.FC = () => {
           className="bg-white rounded-lg shadow-sm border"
         >
           <div className="p-6 border-b">
-            <h2 className="text-lg font-semibold text-gray-900">Recent Applications</h2>
+            <h2 className="text-lg font-semibold text-gray-700">Recent Applications</h2>
           </div>
           <div className="p-6">
             {data.applications.recent.length > 0 ? (
@@ -172,8 +171,8 @@ export const AdvocateDashboard: React.FC = () => {
                 {data.applications.recent.slice(0, 5).map((application, index) => (
                   <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div>
-                      <p className="font-medium text-gray-900">{application.name}</p>
-                      <p className="text-sm text-gray-500">{application.email}</p>
+                      <p className="font-medium text-gray-700">{application.name}</p>
+                      <p className="text-sm text-gray-700">{application.email}</p>
                     </div>
                     <div className="text-right">
                       <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
@@ -183,7 +182,7 @@ export const AdvocateDashboard: React.FC = () => {
                       }`}>
                         {application.status}
                       </span>
-                      <p className="text-xs text-gray-400 mt-1">
+                      <p className="text-xs text-gray-700-400 mt-1">
                         {new Date(application.createdAt).toLocaleDateString()}
                       </p>
                     </div>
@@ -191,7 +190,7 @@ export const AdvocateDashboard: React.FC = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 text-center py-8">No applications yet</p>
+              <p className="text-gray-700 text-center py-8">No applications yet</p>
             )}
           </div>
         </motion.div>
@@ -204,7 +203,7 @@ export const AdvocateDashboard: React.FC = () => {
           className="bg-white rounded-lg shadow-sm border"
         >
           <div className="p-6 border-b">
-            <h2 className="text-lg font-semibold text-gray-900">Quick Actions</h2>
+            <h2 className="text-lg font-semibold text-gray-700">Quick Actions</h2>
           </div>
           <div className="p-6">
             <div className="space-y-4">
@@ -213,7 +212,7 @@ export const AdvocateDashboard: React.FC = () => {
                   <EyeIcon className="w-5 h-5 text-blue-600 mr-3" />
                   <span className="font-medium text-blue-900">Review Applications</span>
                 </div>
-                <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">
+                <span className="bg-[#FF5757] text-white text-xs px-2 py-1 rounded-full">
                   {data.applications.pending}
                 </span>
               </button>
@@ -254,7 +253,7 @@ export const AdvocateDashboard: React.FC = () => {
         className="mt-8 bg-white rounded-lg shadow-sm border"
       >
         <div className="p-6 border-b">
-          <h2 className="text-lg font-semibold text-gray-900">Team Performance</h2>
+          <h2 className="text-lg font-semibold text-gray-700">Team Performance</h2>
         </div>
         <div className="p-6">
           {data.leads.performanceData.length > 0 ? (
@@ -262,10 +261,10 @@ export const AdvocateDashboard: React.FC = () => {
               <table className="min-w-full">
                 <thead>
                   <tr className="border-b">
-                    <th className="text-left py-2 font-medium text-gray-500">Lead</th>
-                    <th className="text-left py-2 font-medium text-gray-500">Tasks Completed</th>
-                    <th className="text-left py-2 font-medium text-gray-500">Completion Rate</th>
-                    <th className="text-left py-2 font-medium text-gray-500">Last Activity</th>
+                    <th className="text-left py-2 font-medium text-gray-700">Lead</th>
+                    <th className="text-left py-2 font-medium text-gray-700">Tasks Completed</th>
+                    <th className="text-left py-2 font-medium text-gray-700">Completion Rate</th>
+                    <th className="text-left py-2 font-medium text-gray-700">Last Activity</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -273,11 +272,11 @@ export const AdvocateDashboard: React.FC = () => {
                     <tr key={index} className="border-b">
                       <td className="py-3">
                         <div>
-                          <p className="font-medium text-gray-900">{lead.name}</p>
-                          <p className="text-sm text-gray-500">{lead.email}</p>
+                          <p className="font-medium text-gray-700">{lead.name}</p>
+                          <p className="text-sm text-gray-700">{lead.email}</p>
                         </div>
                       </td>
-                      <td className="py-3 text-gray-900">{lead.tasksCompleted}</td>
+                      <td className="py-3 text-gray-700">{lead.tasksCompleted}</td>
                       <td className="py-3">
                         <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
                           lead.completionRate >= 80 ? 'bg-green-100 text-green-800' :
@@ -287,7 +286,7 @@ export const AdvocateDashboard: React.FC = () => {
                           {Math.round(lead.completionRate)}%
                         </span>
                       </td>
-                      <td className="py-3 text-gray-500">
+                      <td className="py-3 text-gray-700">
                         {new Date(lead.lastActivity).toLocaleDateString()}
                       </td>
                     </tr>
@@ -296,7 +295,7 @@ export const AdvocateDashboard: React.FC = () => {
               </table>
             </div>
           ) : (
-            <p className="text-gray-500 text-center py-8">No active leads yet</p>
+            <p className="text-gray-700 text-center py-8">No active leads yet</p>
           )}
         </div>
       </motion.div>

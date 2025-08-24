@@ -116,13 +116,13 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
         className="text-center p-8 bg-white rounded-lg shadow-lg"
       >
         <CheckCircleIcon className="w-16 h-16 text-green-500 mx-auto mb-4" />
-        <h2 className="text-2xl font-bold text-gray-900 mb-2">Application Submitted! 🎉</h2>
-        <p className="text-gray-600 mb-6">
+        <h2 className="text-2xl font-bold text-gray-700 mb-2">Application Submitted! 🎉</h2>
+        <p className="text-gray-700 mb-6">
           Thank you for applying to join our DevRel team. We'll review your application and get back to you soon.
         </p>
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-          <h3 className="font-semibold text-blue-900 mb-2">What's Next?</h3>
-          <ul className="text-sm text-blue-800 space-y-1 text-left">
+        <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
+          <h3 className="font-semibold text-primary mb-2">What's Next?</h3>
+          <ul className="text-sm text-primary/80 space-y-1 text-left">
             <li>• You'll receive an email with next steps</li>
             <li>• Watch for intro video and assessment</li>
             <li>• Qualified candidates will get interview invites</li>
@@ -141,14 +141,14 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
         className="bg-white rounded-lg shadow-lg p-8"
       >
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">Apply for DevRel Team</h2>
-          <p className="text-gray-600">Join us in building an amazing developer community!</p>
+          <h2 className="text-3xl font-bold text-gray-700 mb-2">Apply for DevRel Team</h2>
+          <p className="text-gray-700">Join us in building an amazing developer community!</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Basic Info */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900">Basic Information</h3>
+            <h3 className="text-lg font-semibold text-gray-700">Basic Information</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -158,7 +158,7 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
                 <input
                   {...register('name')}
                   type="text"
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#ff5757] placeholder:text-gray-600 placeholder:font-medium ${
                     errors.name ? 'border-red-300' : 'border-gray-300'
                   }`}
                   placeholder="Your full name"
@@ -173,7 +173,7 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
                 <input
                   {...register('email')}
                   type="email"
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#ff5757] placeholder:text-gray-600 placeholder:font-medium ${
                     errors.email ? 'border-red-300' : 'border-gray-300'
                   }`}
                   placeholder="your.email@example.com"
@@ -189,11 +189,11 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
                 </label>
                 <select
                   {...register('experienceLevel')}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#ff5757] ${
                     errors.experienceLevel ? 'border-red-300' : 'border-gray-300'
                   }`}
                 >
-                  <option value="">Select your level</option>
+                  <option value="" className="text-gray-500">Select your level</option>
                   {EXPERIENCE_LEVELS.map(level => (
                     <option key={level} value={level}>{level}</option>
                   ))}
@@ -207,11 +207,11 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
                 </label>
                 <select
                   {...register('availability')}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#ff5757] ${
                     errors.availability ? 'border-red-300' : 'border-gray-300'
                   }`}
                 >
-                  <option value="">Select availability</option>
+                  <option value="" className="text-gray-500">Select availability</option>
                   {AVAILABILITY.map(time => (
                     <option key={time} value={time}>{time}</option>
                   ))}
@@ -234,8 +234,8 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
                   onClick={() => toggleTechStack(tech)}
                   className={`p-2 text-sm rounded-md border transition-colors ${
                     watchedTechStack.includes(tech)
-                      ? 'bg-blue-600 text-white border-blue-600'
-                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-50'
+                      ? 'bg-primary text-white border-primary'
+                      : 'bg-white text-gray-900 border-gray-300 hover:bg-gray-50'
                   }`}
                 >
                   {tech}
@@ -247,7 +247,7 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
 
           {/* Motivation */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900">Tell Us About Yourself</h3>
+            <h3 className="text-lg font-semibold text-gray-700">Tell Us About Yourself</h3>
             
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -256,7 +256,7 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
               <textarea
                 {...register('motivation')}
                 rows={3}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#ff5757] placeholder:text-gray-600 placeholder:font-medium ${
                   errors.motivation ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder="Share your passion for developer relations and community building..."
@@ -271,7 +271,7 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
               <textarea
                 {...register('whyTBE')}
                 rows={3}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#ff5757] placeholder:text-gray-600 placeholder:font-medium ${
                   errors.whyTBE ? 'border-red-300' : 'border-gray-300'
                 }`}
                 placeholder="What excites you about TBE's mission and community?"
@@ -282,8 +282,8 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
 
           {/* Commitments */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">Your Commitments</h3>
-            <p className="text-gray-600 mb-4">As a DevRel, we'd love your help with:</p>
+            <h3 className="text-lg font-semibold text-gray-700 mb-3">Your Commitments</h3>
+            <p className="text-gray-700 mb-4">As a DevRel, we'd love your help with:</p>
             
             <div className="space-y-3">
               {[
@@ -298,7 +298,7 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
                     type="checkbox"
                     checked={watchedCommitments[commitment.key as keyof typeof watchedCommitments]}
                     onChange={() => toggleCommitment(commitment.key as keyof ApplicationFormData['commitments'])}
-                    className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    className="rounded border-gray-300 text-primary focus:ring-primary"
                   />
                   <span className="text-gray-700">{commitment.label}</span>
                 </label>
@@ -326,7 +326,7 @@ export const SimpleApplicationForm: React.FC<SimpleApplicationFormProps> = ({ on
               className={`w-full py-3 px-4 rounded-md font-semibold text-white transition-colors ${
                 isSubmitting || !isValid
                   ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-blue-600 hover:bg-blue-700'
+                  : 'bg-primary hover:bg-primary-hover'
               }`}
             >
               {isSubmitting ? 'Submitting...' : 'Submit Application'}

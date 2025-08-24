@@ -19,8 +19,8 @@ export default function LearningJourneySection() {
 							<div className={`w-16 h-16 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center text-2xl text-white mb-4`}>
 								{item.icon}
 							</div>
-							<div className="text-sm text-gray-500 mb-3 font-medium">Stage {idx + 1}</div>
-							<Text level="h4" className="text-sm font-semibold text-gray-900 leading-tight mb-4">
+							<div className="text-sm text-gray-700 mb-3 font-medium">Stage {idx + 1}</div>
+							<Text level="h4" className="text-sm font-semibold text-gray-700 leading-tight mb-4">
 								{item.title}
 							</Text>
 							<div className="w-full h-2 rounded-full bg-gray-100 overflow-hidden">

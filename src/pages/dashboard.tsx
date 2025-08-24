@@ -21,8 +21,8 @@ const DashboardPage: React.FC = () => {
             className="text-center max-w-md"
           >
             <ExclamationTriangleIcon className="w-16 h-16 text-red-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Access Denied</h2>
-            <p className="text-gray-600 mb-6">
+            <h2 className="text-2xl font-bold text-gray-700 mb-4">Access Denied</h2>
+            <p className="text-gray-700 mb-6">
               You don't have access to this dashboard. Please contact an administrator if you believe this is an error.
             </p>
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
