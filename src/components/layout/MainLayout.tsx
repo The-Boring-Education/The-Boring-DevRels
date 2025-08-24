@@ -10,42 +10,80 @@ interface MainLayoutProps {
   title?: string;
   description?: string;
   showNavigation?: boolean;
+  seo?: {
+    canonicalUrl?: string;
+    ogImage?: string;
+    keywords?: string;
+  };
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ 
   children, 
   title = 'The Boring DevRels',
   description = 'Join The Boring Education\'s DevRel team and help build an amazing developer community.',
-  showNavigation = true
+  showNavigation = true,
+  seo = {}
 }) => {
   const { user, signOut } = useAuth();
   const router = useRouter();
 
   const pageTitle = title === 'The Boring DevRels' ? title : `${title} - The Boring DevRels`;
+  const { canonicalUrl, ogImage, keywords = "DevRel, Developer Relations, Community, The Boring Education, Hiring, Jobs" } = seo;
 
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={description} />
-        <meta name="keywords" content="DevRel, Developer Relations, Community, The Boring Education, Hiring, Jobs" />
+        <meta name="keywords" content={keywords} />
+        
+        {/* Canonical URL */}
+        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
         
         {/* Open Graph */}
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={description} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="The Boring DevRels" />
+        {ogImage && <meta property="og:image" content={ogImage} />}
+        {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
         
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={description} />
+        {ogImage && <meta name="twitter:image" content={ogImage} />}
         
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
         
         {/* Viewport */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              name: pageTitle,
+              description: description,
+              url: canonicalUrl || router.asPath,
+              publisher: { 
+                "@type": "Organization", 
+                name: "The Boring DevRels",
+                url: "https://devrels.theboringeducation.com"
+              },
+              mainEntity: {
+                "@type": "Organization",
+                name: "The Boring Education",
+                description: "Tech education platform empowering developers and students",
+                url: "https://theboringeducation.com"
+              }
+            }),
+          }}
+        />
       </Head>
 
       <div className="min-h-screen flex flex-col bg-gray-50">
