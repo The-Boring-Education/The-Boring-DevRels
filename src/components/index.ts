@@ -10,3 +10,6 @@ export { SimpleApplicationForm } from './forms/SimpleApplicationForm';
 // Dashboard components
 export { AdvocateDashboard } from './dashboards/AdvocateDashboard';
 export { LeadDashboard } from './dashboards/LeadDashboard';
+
+// Admin components
+export { HiringDashboard } from './admin/HiringDashboard';
