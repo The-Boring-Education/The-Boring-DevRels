@@ -1,61 +1,209 @@
 export const LANDING = {
-	hero: {
-		title: "Be the Face of Open-Source Tech Education in 🇮🇳",
-		description:
-			"Join The Boring Education's Campus Connect & DevRel Program — Build, Lead, and Learn.",
-		imageSrc: "https://ik.imagekit.io/tbe/webapp/hero-image.svg",
-		primaryCtaText: "Apply Now",
-		secondaryCtaText: "View Program Details",
+	assets: {
+		heroIllustration:
+			"https://ik.imagekit.io/riufvimprm/devrel/hero-main-illustration.png?updatedAt=1790057685498",
+		codeTrackQuote:
+			"https://ik.imagekit.io/riufvimprm/devrel/code-track-quote.png?updatedAt=1790057707568",
+		codeTrackIde:
+			"https://ik.imagekit.io/riufvimprm/devrel/code-track-ide.png?updatedAt=1790057743094",
+		communityTrackQuote:
+			"https://ik.imagekit.io/riufvimprm/devrel/community-track-quote.png?updatedAt=1790057774532",
+		communityTrackMegaphone:
+			"https://ik.imagekit.io/riufvimprm/devrel/community-track-megaphone.png?updatedAt=1790057790083",
+		ctaBetterLearners:
+			"https://ik.imagekit.io/riufvimprm/devrel/cta-better-learners.png?updatedAt=1790057805337",
+		ctaSameStudents:
+			"https://ik.imagekit.io/riufvimprm/devrel/cta-same-students.png?updatedAt=1790057820325",
+		leadBuildRepresent:
+			"https://ik.imagekit.io/riufvimprm/devrel/lead-build-represent.png",
+		logo: "https://ik.imagekit.io/tbe/webapp/logo.svg",
 	},
-	about: {
-		heading: "About the Program",
-		focusText: "We are hiring DevRels across colleges in India",
-		features: [
-			{ title: "Build Community", desc: "Lead a tech-first community at your campus", icon: "👥" },
-			{ title: "Host Events", desc: "Workshops, meetups, hackathons", icon: "🎪" },
-			{ title: "Learn from Mentors", desc: "Industry guidance and feedback", icon: "🎓" },
-			{ title: "Grow Your Brand", desc: "Certificates, badges, and visibility", icon: "⭐" },
+	hero: {
+		tag: "Build · Share · Learn · Grow",
+		headlinePrefix: "TBE",
+		headlineHighlight: "Contributor",
+		headlineSuffix: "Program",
+		subtitle: "A community of builders, creators and problem solvers.",
+		description:
+			"Be a part of The Boring Education Contributor Program and help us make quality tech education accessible to every learner. Contribute, create and grow — together.",
+		primaryCta: "Apply Now",
+		secondaryCta: "Learn More",
+		communityText: "Join a growing community of amazing builders",
+	},
+	perks: {
+		badge: "PERKS",
+		heading: "More than just a program",
+		subheading:
+			"We value your time, effort and impact. Here's what you get as a TBE Contributor.",
+		items: [
+			{
+				title: "Weekly Meetings with Founder",
+				desc: "Direct interaction with Sachin Shukla, share ideas, get guidance and learn first-hand.",
+				iconType: "meeting",
+			},
+			{
+				title: "Goodies & Swags",
+				desc: "Exclusive TBE goodies, merchandise and surprises.",
+				iconType: "gift",
+			},
+			{
+				title: "Internships",
+				desc: "Top contributors may get internship opportunities with TBE.",
+				iconType: "briefcase",
+			},
+			{
+				title: "Certificate",
+				desc: "Get an official TBE Contributor certificate to showcase your contributions",
+				iconType: "certificate",
+			},
+			{
+				title: "IRL Meetups",
+				desc: "Potential invites to offline events, meetups and special gatherings.",
+				iconType: "meetup",
+			},
+			{
+				title: "Recognition",
+				desc: "Be featured across our platforms, social channels and community.",
+				iconType: "ribbon",
+			},
+		],
+	},
+	tracks: {
+		badge: "TWO TRACKS",
+		heading: "Choose your path",
+		subheading: "Contribute in the way you love. Or do both!",
+		codeTrack: {
+			title: "Code Track",
+			desc: "Contribute to our open source projects and help us build better learning products.",
+			bullets: [
+				"Contribute to our apps and open source repos",
+				"Fix issues, build features, improve docs",
+				"Collaborate with our team",
+				"Make a real impact on thousands of learners",
+			],
+			ctaText: "Join Code Track",
+		},
+		communityTrack: {
+			title: "Community Track",
+			desc: "Create content, engage in discussions and grow the TBE community.",
+			bullets: [
+				"Create blogs, threads, reels, memes and more",
+				"Be active in our community channels",
+				"Help and guide fellow learners",
+				"Represent TBE in your college and online",
+			],
+			ctaText: "Join Community Track",
+		},
+	},
+	roles: {
+		badge: "ROLES & GROWTH",
+		heading: "Grow. Take on more. Make a bigger impact.",
+		subheading:
+			"Start as a Contributor and unlock new roles as you complete tasks and create impact.",
+		items: [
+			{
+				role: "TBE Contributor",
+				badge: "Start Here",
+				iconType: "contributor",
+				description:
+					"Contribute to projects, create content, help the community and complete tasks to earn points.",
+				perks: [
+					"Access to community channels",
+					"Get featured for your contributions",
+					"Unlock opportunities to grow",
+				],
+			},
+			{
+				role: "TBE Captain",
+				badge: "Level Up",
+				iconType: "captain",
+				description:
+					"Active contributors who consistently create impact and take initiative.",
+				perks: [
+					"Exclusive TBE goodies & swags",
+					"Early access to new products",
+					"Special community channels",
+					"More responsibilities and visibility",
+				],
+			},
+			{
+				role: "TBE Lead",
+				badge: "For Exceptional Leaders",
+				iconType: "lead",
+				description:
+					"Selected leaders who organize events (college or online workshops, hackathons, study jams, etc), grow the community and drive real impact.",
+				perks: [
+					"Event support & budget (for IRL/online)",
+					"Premium swags and merchandise",
+					"Direct collaboration with the core team",
+					"Featured across TBE platforms",
+				],
+			},
+		],
+	},
+	whyJoin: {
+		badge: "WHY JOIN",
+		heading: "Build your future, with TBE",
+		subheading: "This isn't just a program, it's a platform to grow.",
+		items: [
+			{
+				title: "Build your online presence",
+				desc: "Showcase your work, contributions and content to a wider audience.",
+				iconType: "rocket",
+			},
+			{
+				title: "Grow your network",
+				desc: "Connect with like-minded peers, mentors and industry builders.",
+				iconType: "network",
+			},
+			{
+				title: "Develop real skills",
+				desc: "Gain hands-on experience in open source, content creation and community building.",
+				iconType: "chart",
+			},
+			{
+				title: "Get career opportunities",
+				desc: "Stand out for internships, collaborations and future roles.",
+				iconType: "lightbulb",
+			},
+			{
+				title: "Be part of a movement",
+				desc: "Help make tech education simple, practical and accessible for every learner.",
+				iconType: "heart",
+			},
 		],
 	},
 	process: {
-		heading: "Hiring Process",
-		focusText: "A simple and fast selection process",
+		badge: "GET STARTED",
+		heading: "A simple process",
+		subheading: "From application to impact — here's how it works.",
 		steps: [
-			{ step: "01", title: "Apply Online", desc: "Submit your application form with portfolio", icon: "📝" },
-			{ step: "02", title: "Short Interview", desc: "Quick conversation with our team", icon: "🎯" },
-			{ step: "03", title: "Onboarding & Training", desc: "Kickstart with resources and guidance", icon: "🚀" },
-			{ step: "04", title: "Start Building", desc: "Lead your campus community", icon: "🏗️" },
+			{
+				num: "1",
+				title: "Apply",
+				desc: "Fill out the application form and tell us about yourself.",
+			},
+			{
+				num: "2",
+				title: "We Review",
+				desc: "Our team will review your application.",
+			},
+			{
+				num: "3",
+				title: "Get Onboarded",
+				desc: "Join the program and meet the team.",
+			},
+			{
+				num: "4",
+				title: "Start Contributing",
+				desc: "Pick your track and start making an impact!",
+			},
 		],
 	},
-	journey: {
-		heading: "Learning Journey",
-		focusText: "Grow from fundamentals to leadership",
-		stages: [
-			{ title: "DevRel Fundamentals", icon: "🎯", color: "from-blue-500 to-indigo-600" },
-			{ title: "Event Planning & Community Building", icon: "🏗️", color: "from-indigo-500 to-purple-600" },
-			{ title: "Hands-on Projects with TBE", icon: "⚡", color: "from-purple-500 to-pink-600" },
-			{ title: "Networking & Leadership Growth", icon: "🌟", color: "from-pink-500 to-red-600" },
-			{ title: "Graduation & Certification", icon: "🎓", color: "from-red-500 to-orange-600" },
-		],
-	},
-	perks: {
-		heading: "Perks & Rewards",
-		focusText: "Grow faster with exclusive benefits",
-		items: [
-			{ perk: "Free mentorship from industry experts", icon: "👨‍🏫", color: "from-blue-500 to-indigo-600" },
-			{ perk: "TBE Swag & Merchandise", icon: "🎁", color: "from-indigo-500 to-purple-600" },
-			{ perk: "Certificates & LinkedIn Badges", icon: "🏆", color: "from-purple-500 to-pink-600" },
-			{ perk: "Priority Access to TBE Internships", icon: "💼", color: "from-pink-500 to-red-600" },
-			{ perk: "Event hosting budget", icon: "💰", color: "from-red-500 to-orange-600" },
-			{ perk: "Networking with top founders & engineers", icon: "🤝", color: "from-orange-500 to-yellow-600" },
-		],
-	},
-	cta: {
-		heading: "Ready to Lead Your Campus Tech Community? 🚀",
+	ctaBanner: {
+		heading: "Ready to be a part of TBE?",
 		description:
-			"Join hundreds of students who are already building the future of tech education. Don't miss this opportunity to grow, learn, and make a difference.",
-		primaryCtaText: "Apply Now - Limited Time!",
-		secondaryCtaText: "Learn More About the Program",
+			"Join the Contributor Program and help us create a better learning experience for students everywhere.",
+		ctaText: "Apply Now",
 	},
 } as const;
-
