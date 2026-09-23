@@ -3,16 +3,25 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SITE } from "@/config/links";
 import HeroSection from "@/components/sections/HeroSection";
-import AboutSection from "@/components/sections/AboutSection";
-import HiringProcessSection from "@/components/sections/HiringProcessSection";
-import LearningJourneySection from "@/components/sections/LearningJourneySection";
 import PerksSection from "@/components/sections/PerksSection";
+import TracksSection from "@/components/sections/TracksSection";
+import RolesGrowthSection from "@/components/sections/RolesGrowthSection";
+import WhyJoinSection from "@/components/sections/WhyJoinSection";
+import HiringProcessSection from "@/components/sections/HiringProcessSection";
 import CallToActionSection from "@/components/sections/CallToActionSection";
 
-// Main Component
-const CampusConnect = ({ seo }: { seo: { title: string; description: string; url: string; image: string } }) => {
+interface CampusConnectProps {
+  seo: {
+    title: string;
+    description: string;
+    url: string;
+    image: string;
+  };
+}
+
+export default function CampusConnect({ seo }: CampusConnectProps) {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white text-gray-900">
       <Head>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
@@ -45,30 +54,30 @@ const CampusConnect = ({ seo }: { seo: { title: string; description: string; url
 
       <main className="flex-1">
         <HeroSection />
-        <AboutSection />
-        <HiringProcessSection />
-        <LearningJourneySection />
         <PerksSection />
+        <TracksSection />
+        <RolesGrowthSection />
+        <WhyJoinSection />
+        <HiringProcessSection />
         <CallToActionSection />
       </main>
 
       <Footer />
     </div>
   );
-};
-
-export default CampusConnect;
+}
 
 export async function getStaticProps() {
-  const title = "Campus Connect – The Boring DevRels";
+  const title = "TBE Contributor Program – The Boring Education";
   const description =
-    "Join The Boring Education&apos;s Campus Connect & DevRel Program — build communities, host events, and learn from mentors. Open across colleges in India.";
-  const url = `${SITE.baseUrl}/campus-connect`;
-  const image = `${SITE.baseUrl}/file.svg`;
+    "A community of builders, creators and problem solvers. Be a part of The Boring Education Contributor Program and help us make quality tech education accessible to every learner.";
+  const url = SITE.baseUrl;
+  const image =
+    "https://ik.imagekit.io/riufvimprm/devrel/hero-main-illustration.png?updatedAt=1790057685498";
 
   return {
     props: {
       seo: { title, description, url, image },
     },
   };
-} 
+}

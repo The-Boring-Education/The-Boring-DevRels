@@ -1,62 +1,65 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Section } from "@/components/ui/Section";
-import { FlexContainer } from "@/components/ui/FlexContainer";
-import { Text } from "@/components/ui/Text";
 import { LINKS } from "@/config/links";
 import { LANDING } from "@/config/landing";
 
 export default function CallToActionSection() {
-	const { heading, description, primaryCtaText, secondaryCtaText } = LANDING.cta;
-	return (
-		<Section className="bg-gradient-to-br from-[#ff5757] to-[#ff6b6b] relative overflow-hidden">
-			<div className="absolute inset-0 pointer-events-none">
-				<div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-				<div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
-			</div>
+  const { ctaBanner, assets } = LANDING;
 
-			<div className="max-w-6xl mx-auto relative z-10 text-center">
-				<Text level="h2" className="text-3xl md:text-4xl font-bold text-white mb-8">
-					{heading}
-				</Text>
-				<Text level="p" className="text-xl text-white/90 mb-10 max-w-4xl mx-auto leading-relaxed">
-					{description}
-				</Text>
+  return (
+    <section className="py-12 md:py-16 bg-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative bg-[#FFF4F3] border border-[#FFE3E1] rounded-3xl p-8 sm:p-12 md:p-16 flex items-center justify-between overflow-hidden shadow-2xs">
+          {/* Left Sticker: Better Learners */}
+          <div className="hidden md:block w-36 lg:w-44 select-none pointer-events-none shrink-0 -ml-4">
+            <Image
+              src={assets.ctaBetterLearners}
+              alt="Better Learners A Brighter Tomorrow"
+              width={180}
+              height={140}
+              className="w-full h-auto object-contain drop-shadow-2xs"
+            />
+          </div>
 
-				<FlexContainer className="mb-10 gap-6 justify-center" direction="col" wrap={false}>
-					<Link
-						href={LINKS.joinDevRelAdvocate}
-						target="_blank"
-						className="bg-white text-[#ff5757] hover:bg-gray-100 px-10 py-5 rounded-2xl shadow-xl text-xl font-semibold w-full sm:w-auto transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
-					>
-						{primaryCtaText}
-					</Link>
-					<Link
-						href={LINKS.viewSessionDetails}
-						target="_blank"
-						className="text-white underline hover:text-gray-200 transition-colors duration-300 text-xl"
-					>
-						{secondaryCtaText}
-					</Link>
-				</FlexContainer>
+          {/* Center Content */}
+          <div className="flex-1 text-center max-w-xl mx-auto z-10">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-gray-900 tracking-tight mb-3">
+              {ctaBanner.heading}
+            </h2>
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 leading-relaxed mb-8">
+              {ctaBanner.description}
+            </p>
+            <Link
+              href={LINKS.joinDevRelAdvocate}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#EA4544] px-8 py-3.5 text-base font-semibold text-white shadow-sm hover:bg-[#d93837] active:scale-95 transition-all duration-150"
+            >
+              <span>{ctaBanner.ctaText}</span>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2.5}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </Link>
+          </div>
 
-				<FlexContainer className="gap-6 justify-center" itemCenter wrap>
-					<span className="flex items-center gap-2 text-white/90 text-sm">
-						<span className="w-3 h-3 bg-green-400 rounded-full" />
-						Applications Open
-					</span>
-					<span className="opacity-40">•</span>
-					<span className="flex items-center gap-2 text-white/90 text-sm">
-						<span className="w-3 h-3 bg-yellow-400 rounded-full" />
-						Rolling Admissions
-					</span>
-					<span className="opacity-40">•</span>
-					<span className="flex items-center gap-2 text-white/90 text-sm">
-						<span className="w-3 h-3 bg-blue-400 rounded-full" />
-						Start Anytime
-					</span>
-				</FlexContainer>
-			</div>
-		</Section>
-	);
+          {/* Right Sticker: Same Students */}
+          <div className="hidden md:block w-36 lg:w-44 select-none pointer-events-none shrink-0 -mr-4">
+            <Image
+              src={assets.ctaSameStudents}
+              alt="Same Students Bigger Possibilities"
+              width={180}
+              height={140}
+              className="w-full h-auto object-contain drop-shadow-2xs"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
-

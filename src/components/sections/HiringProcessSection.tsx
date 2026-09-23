@@ -1,48 +1,64 @@
-import { Section } from "@/components/ui/Section";
-import { SectionHeader } from "@/components/ui/SectionHeader";
-import { Text } from "@/components/ui/Text";
+import React from "react";
 import { LANDING } from "@/config/landing";
 
 export default function HiringProcessSection() {
-	const { heading, focusText, steps } = LANDING.process;
-	return (
-		<Section id="process" className="bg-gray-50">
-			<div className="max-w-6xl mx-auto">
-				<SectionHeader heading={heading} focusText={focusText} />
+  const { process } = LANDING;
 
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-					{steps.map((s, idx) => (
-						<div key={s.step} className="relative flex flex-col items-center text-center">
-							{idx < steps.length - 1 && (
-								<div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-indigo-500 to-pink-500 transform -translate-y-1/2 z-0" />
-							)}
+  return (
+    <section id="process" className="py-16 md:py-20 bg-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <span className="text-[#EA4544] font-bold text-xs tracking-widest uppercase">
+            {process.badge}
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight mt-2">
+            {process.heading}
+          </h2>
+          <p className="text-sm sm:text-base text-gray-500 mt-2.5">
+            {process.subheading}
+          </p>
+        </div>
 
-							<div className="relative z-10">
-								<div className="w-20 h-20 rounded-full bg-white border-4 border-indigo-500 flex items-center justify-center font-bold text-indigo-600 shadow-lg text-xl mb-6">
-									{s.step}
-								</div>
+        {/* 4 Process Steps with Connectors */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative">
+          {process.steps.map((step, idx) => (
+            <React.Fragment key={step.num}>
+              <div className="relative bg-[#FAFAFA] border border-gray-100 rounded-2xl p-6 flex flex-col items-center text-center shadow-2xs hover:shadow-xs transition-shadow">
+                {/* Step Number Circle */}
+                <div className="w-9 h-9 rounded-full bg-[#EA4544] text-white font-bold text-sm flex items-center justify-center mb-4 shadow-sm">
+                  {step.num}
+                </div>
 
-								<div className="text-3xl mb-4">{s.icon}</div>
-								<Text level="h3" className="text-xl font-bold text-gray-900 mb-3">
-									{s.title}
-								</Text>
-								<Text level="p" className="text-gray-600 leading-relaxed">
-									{s.desc}
-								</Text>
-							</div>
-						</div>
-					))}
-				</div>
+                {/* Step Title */}
+                <h3 className="text-sm sm:text-base font-bold text-gray-900 mb-2">
+                  {step.title}
+                </h3>
 
-				<div className="lg:hidden mt-8 flex justify-center">
-					<div className="flex items-center gap-2 text-gray-400">
-						<span>↓</span>
-						<span>↓</span>
-						<span>↓</span>
-					</div>
-				</div>
-			</div>
-		</Section>
-	);
+                {/* Step Description */}
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  {step.desc}
+                </p>
+
+                {/* Right Arrow for desktop (between items) */}
+                {idx < process.steps.length - 1 && (
+                  <div className="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-6 h-6 rounded-full bg-white border border-gray-200 items-center justify-center text-gray-400">
+                    <svg
+                      className="w-3.5 h-3.5 text-[#EA4544]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth={2.5}
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
-
